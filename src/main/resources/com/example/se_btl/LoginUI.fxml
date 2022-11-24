@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #B951FF;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.LoginUI">
+   <children>
+      <Button layoutX="248.0" layoutY="239.0" mnemonicParsing="false" onAction="#login" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: green;" text="Login" textAlignment="CENTER" />
+      <PasswordField fx:id="matKhauField" layoutX="225.0" layoutY="200.0" />
+      <TextField fx:id="tenDangNhapField" layoutX="225.0" layoutY="163.0" />
+      <Label layoutX="128.0" layoutY="167.0" text="Ten dang nhap" />
+      <Label layoutX="128.0" layoutY="204.0" text="Mat khau" />
+   </children>
+</AnchorPane>
