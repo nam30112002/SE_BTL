@@ -1,11 +1,19 @@
 package com.example.se_btl;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.Objects;
 
@@ -14,7 +22,7 @@ public class LoginUI {
     private TextField tenDangNhapField;
     @FXML
     private PasswordField matKhauField;
-    public void login(){
+    public void login(ActionEvent event){
         ResultSet resultSet;
         try {
             String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=user_of_QLNK;encrypt=false;user=nam;password=nam30112002";
@@ -32,7 +40,8 @@ public class LoginUI {
                 String matKhau = resultSet.getString(2);
 
                 if(Objects.equals(tenDangNhap, inputTenDangNhap)&& Objects.equals(inputMatKhau, matKhau)) {
-                    access();
+                    try{access(event);}
+                    catch (IOException e){System.out.println(e);}
                     count++;
                     break;
                 }
@@ -45,6 +54,7 @@ public class LoginUI {
                 alert.setContentText("Tai khoan hoac mat khau khong ton tai");
                 alert.showAndWait();
             }
+
         } catch (SQLException ex) {
             System.err.println("Cannot connect database, " + ex);
         }
@@ -53,8 +63,33 @@ public class LoginUI {
     public void setMatKhauField(PasswordField matKhauField) {
         this.matKhauField = matKhauField;
     }
-    public void access(){
+    public void access(ActionEvent event) throws IOException {
         System.out.println("dang nhap thanh cong");
-        
+        FXMLLoader fxmlLoader1 = new FXMLLoader(App.class.getResource("MainUI.fxml"));
+        Scene scene1 = new Scene(fxmlLoader1.load());
+        Stage stage = (Stage)( (Node) event.getSource()).getScene().getWindow(); //lay stage chua LoginUI
+        stage.setTitle("Quản lý trao thưởng - Trang chủ");
+        stage.setScene(scene1);
+        stage.show();
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene1.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene1.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
+    }
+    public void chuyenDangKiUI(ActionEvent event) throws IOException {
+        System.out.println("chuyen dang ki thanh cong");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("DangKiUI.fxml"));
+
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage)( (Node) event.getSource()).getScene().getWindow(); //lay stage chua LoginUI
+        stage.setTitle("Quản lý trao thưởng - Đăng kí");
+        stage.setScene(scene);
+        stage.show();
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
     }
 }
