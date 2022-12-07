@@ -22,7 +22,8 @@ public class LoginUI {
     private TextField tenDangNhapField;
     @FXML
     private PasswordField matKhauField;
-    public void login(ActionEvent event){
+
+    public void login(ActionEvent event) {
         ResultSet resultSet;
         try {
             String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=user_of_QLNK;encrypt=false;user=nam;password=nam30112002";
@@ -30,44 +31,55 @@ public class LoginUI {
             Statement statement = conn.createStatement();
             String SQL = "select * from taikhoan";
             resultSet = statement.executeQuery(SQL);
-            int count=0;
-            String inputTenDangNhap=tenDangNhapField.getText();
-            String inputMatKhau=matKhauField.getText();
+            int count = 0;
+            String inputTenDangNhap = tenDangNhapField.getText();
+            String inputMatKhau = matKhauField.getText();
+            if (Objects.equals(inputMatKhau, "") || Objects.equals(inputTenDangNhap, "")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Đăng nhập thất bại");
+                alert.setContentText("Nhập thiếu thông tin, vui lòng nhập lại");
+                alert.showAndWait();
+                return;
+            }
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 //System.out.println(resultSet.getString(1) + " | " + resultSet.getString(2));
                 String tenDangNhap = resultSet.getString(1);
                 String matKhau = resultSet.getString(2);
 
-                if(Objects.equals(tenDangNhap, inputTenDangNhap)&& Objects.equals(inputMatKhau, matKhau)) {
-                    try{access(event);}
-                    catch (IOException e){System.out.println(e);}
+                if (Objects.equals(tenDangNhap, inputTenDangNhap) && Objects.equals(inputMatKhau, matKhau)) {
+                    try {
+                        UserController.setUser(tenDangNhap);
+                        access(event);
+                    } catch (IOException e) {
+                        System.out.println(e);
+                    }
                     count++;
                     break;
                 }
             }
-            if(count==0){
+            if (count == 0) {
                 //System.out.println("dang nhap that bai");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
-                alert.setHeaderText("Dang nhap that bai");
-                alert.setContentText("Tai khoan hoac mat khau khong ton tai");
+                alert.setHeaderText("Đăng nhập thất bại");
+                alert.setContentText("Tài khoản hoặc mật khẩu không đúng");
                 alert.showAndWait();
             }
-
+            statement.close();
         } catch (SQLException ex) {
             System.err.println("Cannot connect database, " + ex);
         }
     }
 
-    public void setMatKhauField(PasswordField matKhauField) {
-        this.matKhauField = matKhauField;
-    }
+
     public void access(ActionEvent event) throws IOException {
         System.out.println("dang nhap thanh cong");
+
         FXMLLoader fxmlLoader1 = new FXMLLoader(App.class.getResource("MainUI.fxml"));
         Scene scene1 = new Scene(fxmlLoader1.load());
-        Stage stage = (Stage)( (Node) event.getSource()).getScene().getWindow(); //lay stage chua LoginUI
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); //lay stage chua LoginUI
         stage.setTitle("Quản lý trao thưởng - Trang chủ");
         stage.setScene(scene1);
         stage.show();
@@ -77,12 +89,13 @@ public class LoginUI {
         stage.setX(x);
         stage.setY(y);
     }
+
     public void chuyenDangKiUI(ActionEvent event) throws IOException {
         System.out.println("chuyen dang ki thanh cong");
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("DangKiUI.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load());
-        Stage stage = (Stage)( (Node) event.getSource()).getScene().getWindow(); //lay stage chua LoginUI
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); //lay stage chua LoginUI
         stage.setTitle("Quản lý trao thưởng - Đăng kí");
         stage.setScene(scene);
         stage.show();

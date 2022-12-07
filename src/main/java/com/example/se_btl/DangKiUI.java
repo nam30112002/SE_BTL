@@ -93,7 +93,6 @@ public class DangKiUI {
         }
         if (count > 0) return;
 
-
         String SQL1 = "insert into taikhoan(taikhoan, matkhau, loai) values ('" + tenDangNhap + "','" + matKhau + "','" +
                 quyen + "');";
         System.out.println("dang ki thanh cong");

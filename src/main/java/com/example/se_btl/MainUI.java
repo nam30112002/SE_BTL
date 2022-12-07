@@ -16,6 +16,10 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class MainUI {
     public MenuItem doiMatKhauMenuItem;
@@ -25,8 +29,9 @@ public class MainUI {
     private MenuBar mainMenuBar;
 
 
-    public void logOut(ActionEvent event) throws IOException {
+    public void logOut(ActionEvent event) throws IOException, SQLException {
         System.out.println("da log out");
+
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoginUI.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
