@@ -3,7 +3,8 @@ module com.example.se_btl {
     requires javafx.fxml;
     requires java.sql;
 
-
-    opens com.example.se_btl to javafx.fxml;
     exports com.example.se_btl;
+    opens com.example.se_btl to javafx.fxml;
+
+
 }

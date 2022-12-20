@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="567.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.MainUI">
    <top>
@@ -37,4 +46,113 @@
         </menus>
       </MenuBar>
    </top>
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="Hộ khẩu">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <left>
+                        <TabPane prefHeight="506.0" prefWidth="793.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+                          <tabs>
+                              <Tab text="Xem hộ khẩu">
+                                 <content>
+                                    <TableView fx:id="bangHoKhau" prefHeight="200.0" prefWidth="200.0">
+                                      <columns>
+                                        <TableColumn fx:id="soHoKhauCol" prefWidth="97.600003051758" text="Số hộ khẩu" />
+                                        <TableColumn fx:id="khuVucCol" prefWidth="83.19998168945312" text="Khu vực" />
+                                          <TableColumn fx:id="diaChiCol" prefWidth="195.2000274658203" text="Địa chỉ" />
+                                          <TableColumn fx:id="ngayLapCol" minWidth="0.0" prefWidth="128.0" text="Ngày lập" />
+                                          <TableColumn fx:id="chuHoCol" prefWidth="226.39996337890625" text="Chủ hộ" />
+                                      </columns>
+                                    </TableView>
+                                 </content>
+                              </Tab>
+                            <Tab text="Tạo mới sổ hộ khẩu">
+                                 <content>
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                       <center>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <Label layoutX="51.0" layoutY="125.0" prefHeight="17.0" prefWidth="100.0" text="Số hộ khẩu" />
+                                                <Label layoutX="50.0" layoutY="167.0" prefHeight="17.0" prefWidth="116.0" text="Khu vực" />
+                                                <Label layoutX="50.0" layoutY="209.0" prefHeight="17.0" prefWidth="107.0" text="Địa chỉ" />
+                                                <Label layoutX="50.0" layoutY="251.0" prefHeight="17.0" prefWidth="109.0" text="Ngày lập" />
+                                                <Label layoutX="51.0" layoutY="322.0" prefHeight="17.0" prefWidth="101.0" text="Chủ hộ" />
+                                                <TextField fx:id="soHoKhauTF" layoutX="185.0" layoutY="121.0" prefHeight="25.0" prefWidth="494.0" />
+                                                <TextField fx:id="ngayLapTF" layoutX="185.0" layoutY="247.0" prefHeight="25.0" prefWidth="488.0" />
+                                                <TextField fx:id="diaChiTF" layoutX="185.0" layoutY="205.0" prefHeight="25.0" prefWidth="489.0" />
+                                                <TextField fx:id="khuvucTF" layoutX="185.0" layoutY="163.0" prefHeight="25.0" prefWidth="493.0" />
+                                                <TextField fx:id="chuHoTF" layoutX="185.0" layoutY="318.0" prefHeight="25.0" prefWidth="489.0" />
+                                                <Button layoutX="332.0" layoutY="379.0" mnemonicParsing="false" onAction="#xacNhanTaoMoiSHK" text="Xác nhận tạo mới" fx:id="xacNhanTaoMoiB" />
+                                                <Label layoutX="203.0" layoutY="285.0" prefHeight="17.0" prefWidth="453.0" text="Chú ý: Ngày lập viết dạng yyyy-mm-dd" />
+                                             </children>
+                                          </Pane>
+                                       </center>
+                                    </BorderPane>
+                                 </content></Tab>
+                            <Tab text="Thêm nhân khẩu vào hộ khẩu">
+                                 <content>
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                       <center>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <Label layoutX="118.0" layoutY="159.0" text="Số hộ khẩu" />
+                                                <Label layoutX="118.0" layoutY="225.0" text="Số nhân khẩu" />
+                                                <TextField fx:id="soHoKhauTF1" layoutX="209.0" layoutY="155.0" prefHeight="25.0" prefWidth="350.0" />
+                                                <TextField fx:id="soNhanKhauTF1" layoutX="209.0" layoutY="221.0" prefHeight="25.0" prefWidth="347.0" />
+                                                <Button layoutX="304.0" layoutY="324.0" mnemonicParsing="false" onAction="#xacNhanThemNhanKhau" prefHeight="25.0" prefWidth="160.0" text="Xác nhận thêm nhân khẩu" fx:id="xacNhanThemNhanKhauB" />
+                                                <Button fx:id="kiemTraChuHoB" layoutX="304.0" layoutY="281.0" mnemonicParsing="false" onAction="#kiemTraTenChuHo" prefHeight="25.0" prefWidth="160.0" text="Kiểm tra tên chủ hộ" />
+                                             </children>
+                                          </Pane>
+                                       </center>
+                                    </BorderPane>
+                                 </content></Tab>
+                              <Tab text="Thiết lập thông tin chủ hộ">
+                                 <content>
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                       <center>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <Label layoutX="118.0" layoutY="159.0" text="Số hộ khẩu" />
+                                                <Label layoutX="118.0" layoutY="225.0" text="Số nhân khẩu" />
+                                                <TextField fx:id="soHoKhauTF11" layoutX="209.0" layoutY="155.0" prefHeight="25.0" prefWidth="350.0" />
+                                                <TextField fx:id="soNhanKhauTF11" layoutX="209.0" layoutY="221.0" prefHeight="25.0" prefWidth="347.0" />
+                                                <Button layoutX="272.0" layoutY="326.0" mnemonicParsing="false" onAction="#xacNhanTTChuHo" prefHeight="25.0" prefWidth="220.0" text="Xác nhận thiết lập thông tin chủ hộ" fx:id="xacNhanB1" />
+                                                <Button fx:id="kiemTraChuHoB1" layoutX="273.0" layoutY="278.0" mnemonicParsing="false" onAction="#kiemTraTenChuHo1" prefHeight="25.0" prefWidth="219.0" text="Kiểm tra tên chủ hộ" />
+                                             </children>
+                                          </Pane>
+                                       </center>
+                                    </BorderPane>
+                                 </content></Tab>
+                              <Tab text="Xóa hộ khẩu">
+                                 <content>
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                       <center>
+                                          <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <Label layoutX="287.0" layoutY="95.0" text="Nhập số hộ khẩu muốn xóa">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="hoKhauXoaTF" layoutX="193.0" layoutY="149.0" prefHeight="25.0" prefWidth="408.0" />
+                                                <Button layoutX="337.0" layoutY="230.0" mnemonicParsing="false" onAction="#kiemTraTenChuHo2" text="Kiểm tra tên chủ hộ" />
+                                                <Button layoutX="338.0" layoutY="279.0" mnemonicParsing="false" onAction="#xoaB" prefHeight="25.0" prefWidth="119.0" text="Xóa hộ khẩu" />
+                                             </children>
+                                          </Pane>
+                                       </center>
+                                    </BorderPane>
+                                 </content></Tab>
+                              <Tab text="Sửa thông tin hộ khẩu" />
+                          </tabs>
+                        </TabPane>
+                     </left>
+                  </BorderPane>
+               </content>
+          </Tab>
+          <Tab text="Trao thưởng" />
+        </tabs>
+      </TabPane>
+   </center>
 </BorderPane>

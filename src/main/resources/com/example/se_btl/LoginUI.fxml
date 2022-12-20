@@ -8,17 +8,17 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFECA8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.LoginUI">
-   <children>
-      <TextField fx:id="tenDangNhapField" layoutX="225.0" layoutY="163.0" prefHeight="26.0" prefWidth="202.0" />
-      <PasswordField fx:id="matKhauField" layoutX="225.0" layoutY="200.0" prefHeight="26.0" prefWidth="201.0" />
-      <Button layoutX="225.0" layoutY="238.0" mnemonicParsing="false" onAction="#login" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #FFB851;" text="Đăng nhập" textAlignment="CENTER" />
-      <Button fx:id="dangKiButton" layoutX="335.0" layoutY="238.0" mnemonicParsing="false" onAction="#chuyenDangKiUI" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #FFB851;" text="Đăng kí" />
-      <Label layoutX="128.0" layoutY="167.0" text="Tên đăng nhập" />
-      <Label layoutX="128.0" layoutY="204.0" text="Mật khẩu" />
-      <Label layoutX="205.0" layoutY="81.0" prefHeight="52.0" prefWidth="260.0" text="Quản Lý Trao Thưởng" textAlignment="CENTER">
-         <font>
-            <Font name="Leelawadee UI" size="23.0" />
-         </font>
-      </Label>
-   </children>
+    <children>
+        <TextField fx:id="tenDangNhapField" layoutX="225.0" layoutY="163.0" prefHeight="26.0" prefWidth="202.0" />
+        <PasswordField fx:id="matKhauField" layoutX="225.0" layoutY="200.0" prefHeight="26.0" prefWidth="201.0" />
+        <Button layoutX="225.0" layoutY="238.0" mnemonicParsing="false" onAction="#login" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #FFB851;" text="Đăng nhập" textAlignment="CENTER" />
+        <Button fx:id="dangKiButton" layoutX="335.0" layoutY="238.0" mnemonicParsing="false" onAction="#chuyenDangKiUI" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #FFB851;" text="Đăng kí" />
+        <Label layoutX="128.0" layoutY="167.0" text="Tên đăng nhập" />
+        <Label layoutX="128.0" layoutY="204.0" text="Mật khẩu" />
+        <Label layoutX="205.0" layoutY="81.0" prefHeight="52.0" prefWidth="260.0" text="Quản Lý Trao Thưởng" textAlignment="CENTER">
+            <font>
+                <Font name="Leelawadee UI" size="23.0" />
+            </font>
+        </Label>
+    </children>
 </AnchorPane>
