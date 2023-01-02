@@ -2,6 +2,7 @@ package com.example.se_btl;
 
 import com.example.se_btl.App;
 import com.example.se_btl.UserController;
+import com.example.se_btl.service.SQLConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,11 +29,11 @@ public class LoginUI {
     public void login(ActionEvent event) {
         ResultSet resultSet;
         try {
-            String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=user_of_QLNK;encrypt=false;user=nam;password=nam30112002";
-            Connection conn = DriverManager.getConnection(dbURL);
-            Statement statement = conn.createStatement();
-            String SQL = "select * from taikhoan";
-            resultSet = statement.executeQuery(SQL);
+//            String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=quanlynhankhau;encrypt=false;user=nam;password=nam30112002";
+//            Connection conn = DriverManager.getConnection(dbURL);
+//            Statement statement = conn.createStatement();
+            String SQL = "select * from users";
+            resultSet = SQLConnection.statement.executeQuery(SQL);
             int count = 0;
             String inputTenDangNhap = tenDangNhapField.getText();
             String inputMatKhau = matKhauField.getText();
@@ -47,8 +48,8 @@ public class LoginUI {
 
             while (resultSet.next()) {
                 //System.out.println(resultSet.getString(1) + " | " + resultSet.getString(2));
-                String tenDangNhap = resultSet.getString(1);
-                String matKhau = resultSet.getString(2);
+                String tenDangNhap = resultSet.getString(2);
+                String matKhau = resultSet.getString(3);
 
                 if (Objects.equals(tenDangNhap, inputTenDangNhap) && Objects.equals(inputMatKhau, matKhau)) {
                     try {
@@ -62,14 +63,12 @@ public class LoginUI {
                 }
             }
             if (count == 0) {
-                //System.out.println("dang nhap that bai");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
                 alert.setHeaderText("Đăng nhập thất bại");
                 alert.setContentText("Tài khoản hoặc mật khẩu không đúng");
                 alert.showAndWait();
             }
-            statement.close();
         } catch (SQLException ex) {
             System.err.println("Cannot connect database, " + ex);
         }
@@ -82,7 +81,7 @@ public class LoginUI {
         FXMLLoader fxmlLoader1 = new FXMLLoader(App.class.getResource("MainUI.fxml"));
         Scene scene1 = new Scene(fxmlLoader1.load());
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); //lay stage chua LoginUI
-        stage.setTitle("Quản lý trao thưởng - Trang chủ");
+        stage.setTitle("Quản lý trao thưởng");
         stage.setScene(scene1);
         stage.show();
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();

@@ -2,6 +2,7 @@ package com.example.se_btl;
 
 import com.example.se_btl.App;
 import com.example.se_btl.UserController;
+import com.example.se_btl.service.SQLConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,14 +51,12 @@ public class DoiMatKhauUI {
 
     public void xacNhanDoiMatKhau(ActionEvent event) throws SQLException {
         System.out.println("xac nhan doi MK");
-        String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=user_of_QLNK;encrypt=false;user=nam;password=nam30112002";
-        Connection conn = DriverManager.getConnection(dbURL);
-        Statement statement = conn.createStatement();
+
         String matKhauCu = matKhauCuField.getText();
         String matKhauMoi = matKhauMoiField.getText();
         String xacNhanMatKhauMoi = xacNhanMatKhauMoiField.getText();
         String SQL = "select matkhau from taikhoan where taikhoan = '" + UserController.getUser() + "';";
-        ResultSet resultSet = statement.executeQuery(SQL);
+        ResultSet resultSet = SQLConnection.statement.executeQuery(SQL);
         String matKhauDeCheck = null;
         while (resultSet.next()) {
             matKhauDeCheck = resultSet.getString(1);
@@ -101,7 +100,7 @@ public class DoiMatKhauUI {
 
         String SQL1 = "UPDATE taikhoan SET matkhau = '" + matKhauMoi + "' WHERE taikhoan = '" + UserController.getUser() + "';";
         System.out.println(SQL1);
-        statement.executeUpdate(SQL1);
+        SQLConnection.statement.executeUpdate(SQL1);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");

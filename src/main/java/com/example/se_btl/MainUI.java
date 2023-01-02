@@ -1,14 +1,11 @@
 package com.example.se_btl;
 
-import com.example.se_btl.App;
-import com.example.se_btl.HoKhau;
-//import com.example.se_btl.ListHoKhau;
+
+import com.example.se_btl.service.SQLConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -17,73 +14,120 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.*;
-import java.util.Objects;
-import java.util.ResourceBundle;
 
 public class MainUI  {
-    public MenuItem doiMatKhauMenuItem;
     @FXML
-    private MenuItem dangXuat;
+    private Label nkTrenDiaBan;
     @FXML
-    private MenuBar mainMenuBar;
+    private Label hkTrenDiaBan;
     @FXML
-    private TableView<HoKhau> bangHoKhau;
+    private Label nkTamTru;
     @FXML
-    private TableColumn<HoKhau,String> soHoKhauCol;
+    private Label nkTamVang;
     @FXML
-    private TableColumn<HoKhau,String> khuVucCol;
+    private TableView<NhanKhau> bangNhanKhau;
     @FXML
-    private TableColumn<HoKhau,String> diaChiCol;
+    private TableColumn<NhanKhau, Integer> idCol;
     @FXML
-    private TableColumn<HoKhau,String> ngayLapCol;
+    private TableColumn<NhanKhau,String> hoTenCol;
     @FXML
-    private TableColumn<HoKhau,String> chuHoCol;
+    private TableColumn<NhanKhau,String> ngaySinhCol;
     @FXML
-    private TextField soHoKhauTF;
+    private TableColumn<NhanKhau,String> gioiTinhCol;
     @FXML
-    private TextField ngayLapTF;
-    @FXML
-    private TextField diaChiTF;
-    @FXML
-    private TextField khuvucTF;
-    @FXML
-    private TextField chuHoTF;
-    @FXML
-    private Button xacNhanTaoMoiB;
-    @FXML
-    private TextField soHoKhauTF1;
-    @FXML
-    private TextField soNhanKhauTF1;
-    @FXML
-    private Button xacNhanThemNhanKhauB;
-    @FXML
-    private Button kiemTraChuHoB;
+    private TableColumn<NhanKhau,String> diaChiCol;
 
     @FXML
-    private TextField soHoKhauTF11;
+    private Button themMoiB;
     @FXML
-    private TextField soNhanKhauTF11;
+    private MenuBar menuBar;
     @FXML
-    private Button kiemTraChuHoB1;
-    @FXML
-    private Button xacNhanB1;
-    @FXML
-    private TextField hoKhauXoaTF;
+    private Button chinhSuaB;
 
 
 
-    public void logOut(ActionEvent event) throws IOException, SQLException {
-        System.out.println("da log out");
 
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoginUI.fxml"));
+    public void initialize() throws SQLException {
+
+        String sql = "select count(id) from nhan_khau;";
+        ResultSet resultSet = SQLConnection.statement.executeQuery(sql);
+        int tongNhanKhau = 0;
+        if(resultSet.next()){
+            tongNhanKhau = resultSet.getInt(1);
+        }
+
+        String sql1 = "select count(id) from tam_vang;";
+        ResultSet resultSet1 = SQLConnection.statement.executeQuery(sql1);
+        int vang = 0;
+        if(resultSet1.next()){
+            vang = resultSet1.getInt(1);
+        }
+        nkTrenDiaBan.setText("Nhân khẩu trên địa bàn: " + (tongNhanKhau - vang));
+
+
+        String sql2 = "select count(id) from ho_khau;";
+        ResultSet resultSet2 = SQLConnection.statement.executeQuery(sql2);
+        int tongHoKhau = 0;
+        if(resultSet2.next()){
+            tongHoKhau = resultSet2.getInt(1);
+        }
+        hkTrenDiaBan.setText("Hộ khẩu trên địa bàn: " + tongHoKhau);
+
+        String sql3 = "select count(id) from tam_tru;";
+        ResultSet resultSet3 = SQLConnection.statement.executeQuery(sql3);
+        int soTamTru = 0;
+        if(resultSet3.next()){
+            soTamTru = resultSet3.getInt(1);
+        }
+        nkTamTru.setText("Nhân khẩu tạm trú: " + soTamTru);
+
+        String sql4 = "select count(id) from tam_vang;";
+        ResultSet resultSet4 = SQLConnection.statement.executeQuery(sql4);
+        int soTamVang = 0;
+        if(resultSet4.next()){
+            soTamVang = resultSet4.getInt(1);
+        }
+        nkTamVang.setText("Nhân khẩu tạm vắng: " + soTamVang);
+
+
+        String SQL = "select * from nhan_khau";
+        ResultSet resultSet5 = SQLConnection.statement.executeQuery(SQL);
+        ObservableList<NhanKhau> list = FXCollections.observableArrayList();
+
+
+        while (resultSet5.next()) {
+
+            int id = resultSet5.getInt(1);
+            String hoTen = resultSet5.getString(3);
+            String ngaySinh = String.valueOf(resultSet5.getDate(5));
+            //System.out.println(ngaySinh);
+            String gioiTinh = resultSet5.getString(6);
+            String diaChi = resultSet5.getString(14);
+            list.add(new NhanKhau(id,hoTen,ngaySinh,gioiTinh,diaChi));
+        }
+
+
+
+        idCol.setCellValueFactory(new PropertyValueFactory<NhanKhau, Integer>("id"));
+        hoTenCol.setCellValueFactory(new PropertyValueFactory<NhanKhau,String>("hoTen"));
+        ngaySinhCol.setCellValueFactory(new PropertyValueFactory<NhanKhau,String>("ngaysinh"));
+        gioiTinhCol.setCellValueFactory(new PropertyValueFactory<NhanKhau,String>("gioiTinh"));
+        diaChiCol.setCellValueFactory(new PropertyValueFactory<NhanKhau,String>("diaChi"));
+
+
+        bangNhanKhau.setItems(list);
+//        bangNhanKhau.getSelectionModel().getSelectedItem();
+//
+//        chinhSuaB.setDisable(true);
+    }
+
+    public void themMoiNhanKhau() throws IOException {
+        //System.out.println("alo");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("ThemMoiNhanKhauUI.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-
-        //Stage stage = (Stage)( (Node) event.getSource() ).getScene().getWindow(); //lay stage chua LoginUI
-        //Stage stage = (Stage)dangXuat.getParentPopup().getOwnerWindow(); //menuitem khong phai la lop con cua Node
-        Stage stage = (Stage) mainMenuBar.getScene().getWindow();//tranh loi NUllPointer
-        stage.setTitle("Quản lý trao thưởng - Đăng nhập");
+        Stage stage = (Stage) menuBar.getScene().getWindow();//tranh loi NUllPointer
+        stage.setTitle("Thêm nhân khẩu");
         stage.setScene(scene);
         stage.show();
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
@@ -93,14 +137,20 @@ public class MainUI  {
         stage.setY(y);
     }
 
-    public void chuyenDoiMatKhauUI(ActionEvent event) throws IOException {
-        System.out.println("chuyen doi mat khau");
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("DoiMatKhauUI.fxml"));
+    public void chinhSua() throws IOException {
+        if(bangNhanKhau.getSelectionModel().getSelectedItem()==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Chỉnh sửa thất bại");
+            alert.setContentText("Chưa chọn nhân khẩu trong bảng");
+            alert.showAndWait();
+            return;
+        }
+        NhanKhau.idTarget = bangNhanKhau.getSelectionModel().getSelectedItem().getId();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("ChinhSuaNhanKhauUI.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        //Stage stage = (Stage)( (Node) event.getSource() ).getScene().getWindow(); //lay stage chua LoginUI
-        //Stage stage = (Stage)dangXuat.getParentPopup().getOwnerWindow(); //menuitem khong phai la lop con cua Node
-        Stage stage = (Stage) mainMenuBar.getScene().getWindow();//tranh loi NUllPointer
-        stage.setTitle("Quản lý trao thưởng - Đổi mật khẩu");
+        Stage stage = (Stage) menuBar.getScene().getWindow();//tranh loi NUllPointer
+        stage.setTitle("Chỉnh sửa nhân khẩu");
         stage.setScene(scene);
         stage.show();
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
@@ -109,308 +159,4 @@ public class MainUI  {
         stage.setX(x);
         stage.setY(y);
     }
-
-
-
-    public void initialize() {
-        String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=user_of_QLNK;encrypt=false;user=nam;password=nam30112002";
-        try {
-            Connection conn = DriverManager.getConnection(dbURL);
-            Statement statement = conn.createStatement();
-            String SQL = "select * from hokhau";
-            ResultSet resultSet = statement.executeQuery(SQL);
-            ObservableList<HoKhau> list = FXCollections.observableArrayList();
-
-            while (resultSet.next()) {
-                String soHoKhau = resultSet.getString(1);
-                //System.out.println(soHoKhau);
-                String khuVuc = resultSet.getString(2);
-                String diaChi = resultSet.getString(3);
-                String ngayLap = resultSet.getString(4);
-                String chuHo = resultSet.getString(5);
-                list.add(new HoKhau(soHoKhau,khuVuc,diaChi,ngayLap,chuHo));
-            }
-            //System.out.println(list.get(1));
-
-
-            soHoKhauCol.setCellValueFactory(new PropertyValueFactory<HoKhau,String>("soHoKhau"));
-            khuVucCol.setCellValueFactory(new PropertyValueFactory<HoKhau,String>("khuVuc"));
-            diaChiCol.setCellValueFactory(new PropertyValueFactory<HoKhau,String>("diaChi"));
-            ngayLapCol.setCellValueFactory(new PropertyValueFactory<HoKhau,String>("ngayLap"));
-            chuHoCol.setCellValueFactory(new PropertyValueFactory<HoKhau,String>("chuHo"));
-
-            //System.out.println(list);
-            bangHoKhau.setItems(list);//loi
-        } catch (SQLException e) {
-            System.err.println("Cannot connect database, " + e);
-        }
-    }
-
-    public void xacNhanTaoMoiSHK(ActionEvent event) throws SQLException {
-        String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=user_of_QLNK;encrypt=false;user=nam;password=nam30112002";
-        Connection conn = DriverManager.getConnection(dbURL);
-        Statement statement = conn.createStatement();
-        String soHoKhau = soHoKhauTF.getText();
-        String ngayLap = ngayLapTF.getText();
-        String diaChi = diaChiTF.getText();
-        String khuVuc = khuvucTF.getText();
-        String chuHo = chuHoTF.getText();
-        System.out.println(chuHo);
-        if(Objects.equals(soHoKhau, "") || Objects.equals(ngayLap, "") || Objects.equals(diaChi, "") || Objects.equals(khuVuc, "") || Objects.equals(chuHo, "")){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Tạo mới sổ hộ khẩu thất bại");
-            alert.setContentText("Chưa nhập đủ thông tin");
-            alert.showAndWait();
-            return;
-        }
-        String SQL = "insert into hokhau(sohokhau, khuvuc, diachi, ngaylap, chuho) values (N'" + soHoKhau + "',N'" + khuVuc + "',N'" +
-                diaChi +"',N'" + ngayLap + "',N'" + chuHo + "');";
-        System.out.println(SQL);
-        statement.executeUpdate(SQL);
-        this.initialize();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thông báo");
-        alert.setHeaderText("Tạo mới thành công");
-        alert.setContentText("Chúc mừng bạn đã tạo mới thành công");
-        alert.showAndWait();
-    }
-
-    public void kiemTraTenChuHo() throws SQLException {
-        String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=user_of_QLNK;encrypt=false;user=nam;password=nam30112002";
-        Connection conn = DriverManager.getConnection(dbURL);
-        Statement statement = conn.createStatement();
-        String SQL="select * from hokhau";
-        String soHoKhau = soHoKhauTF1.getText();
-        String soNhanKhau = soNhanKhauTF1.getText();
-        ResultSet resultSet = statement.executeQuery(SQL);
-        int count = 0;
-        if (Objects.equals(soHoKhau, "")){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Kiểm tra thất bại");
-            alert.setContentText("Bạn chưa nhập số hộ khẩu!");
-            alert.showAndWait();
-            return;
-        }
-        while (resultSet.next()) {
-            String soHoKhauCheck = resultSet.getString(1);
-            //System.out.println(soHoKhauCheck);
-            //System.out.println(soHoKhau);
-            //System.out.println(soHoKhauCheck.compareTo(soHoKhau));
-            if (soHoKhauCheck.compareTo(soHoKhau)==0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setHeaderText("Kiểm tra thành công");
-                alert.setContentText("Tên chủ hộ là: " + resultSet.getString(5));
-                alert.showAndWait();
-                count++;
-                return;
-            }
-        }
-        if (count == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Kiểm tra thất bại");
-            alert.setContentText("Số hộ khẩu không tồn tại");
-            alert.showAndWait();
-        }
-
-    }
-
-    public void xacNhanThemNhanKhau() throws SQLException {
-        String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=user_of_QLNK;encrypt=false;user=nam;password=nam30112002";
-        Connection conn = DriverManager.getConnection(dbURL);
-        Statement statement = conn.createStatement();
-        String soHoKhau = soHoKhauTF1.getText();
-        String soNhanKhau = soNhanKhauTF1.getText();
-        if(Objects.equals(soNhanKhau, "") || Objects.equals(soHoKhau, "")){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Thất bại");
-            alert.setContentText("Chưa nhập đủ thông tin");
-            alert.showAndWait();
-            return;
-        }
-        if (!check(soHoKhau)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Thất bại");
-            alert.setContentText("Số hộ khẩu không tồn tại!");
-            alert.showAndWait();
-            return;
-        }
-
-        String SQL = "insert into nhankhau(sohokhau, cccd) values ('" + soHoKhau + "','" + soNhanKhau + "');" ;
-        //System.out.println(SQL);
-        statement.executeUpdate(SQL);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thông báo");
-        alert.setHeaderText("Thêm nhân khẩu thành công");
-        alert.setContentText("Chúc mừng bạn đã thêm nhân khẩu thành công!");
-        alert.showAndWait();
-    }
-    public boolean check(String soHoKhau) throws SQLException {
-        String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=user_of_QLNK;encrypt=false;user=nam;password=nam30112002";
-        Connection conn = DriverManager.getConnection(dbURL);
-        Statement statement = conn.createStatement();
-        String SQL="select * from hokhau";
-        ResultSet resultSet = statement.executeQuery(SQL);
-
-        while (resultSet.next()) {
-            String soHoKhauCheck = resultSet.getString(1);
-            if (soHoKhauCheck.compareTo(soHoKhau)==0) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void xacNhanTTChuHo() throws SQLException {
-        String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=user_of_QLNK;encrypt=false;user=nam;password=nam30112002";
-        Connection conn = DriverManager.getConnection(dbURL);
-        Statement statement = conn.createStatement();
-        String soHoKhau = soHoKhauTF11.getText();
-        String soNhanKhau = soNhanKhauTF11.getText();
-        if(Objects.equals(soNhanKhau, "") || Objects.equals(soHoKhau, "")){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Thất bại");
-            alert.setContentText("Chưa nhập đủ thông tin");
-            alert.showAndWait();
-            return;
-        }
-        if (!check(soHoKhau)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Thất bại");
-            alert.setContentText("Số hộ khẩu không tồn tại!");
-            alert.showAndWait();
-            return;
-        }
-
-        String SQL = "update hokhau set cccdchuho = '" + soNhanKhau + "' where sohokhau = '" + soHoKhau + "';" ;
-        System.out.println(SQL);
-        statement.executeUpdate(SQL);
-
-        String SQL1 = "insert into nhankhau(sohokhau, cccd) values ('" + soHoKhau + "','" + soNhanKhau + "');" ;
-        statement.executeUpdate(SQL1);
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thông báo");
-        alert.setHeaderText("Thành công");
-        alert.setContentText("Chúc mừng bạn đã xác nhận thông tin chủ hộ thành công!");
-        alert.showAndWait();
-    }
-
-    public void kiemTraTenChuHo1() throws SQLException {
-        String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=user_of_QLNK;encrypt=false;user=nam;password=nam30112002";
-        Connection conn = DriverManager.getConnection(dbURL);
-        Statement statement = conn.createStatement();
-        String SQL="select * from hokhau";
-        String soHoKhau = soHoKhauTF11.getText();
-        ResultSet resultSet = statement.executeQuery(SQL);
-        int count = 0;
-        if (Objects.equals(soHoKhau, "")){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Kiểm tra thất bại");
-            alert.setContentText("Bạn chưa nhập số hộ khẩu!");
-            alert.showAndWait();
-            return;
-        }
-        while (resultSet.next()) {
-            String soHoKhauCheck = resultSet.getString(1);
-            //System.out.println(soHoKhauCheck);
-            //System.out.println(soHoKhau);
-            //System.out.println(soHoKhauCheck.compareTo(soHoKhau));
-            if (soHoKhauCheck.compareTo(soHoKhau)==0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setHeaderText("Kiểm tra thành công");
-                alert.setContentText("Tên chủ hộ là: " + resultSet.getString(5));
-                alert.showAndWait();
-                count++;
-                return;
-            }
-        }
-        if (count == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Kiểm tra thất bại");
-            alert.setContentText("Số hộ khẩu không tồn tại");
-            alert.showAndWait();
-        }
-    }
-
-    public void kiemTraTenChuHo2() throws SQLException {
-        String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=user_of_QLNK;encrypt=false;user=nam;password=nam30112002";
-        Connection conn = DriverManager.getConnection(dbURL);
-        Statement statement = conn.createStatement();
-        String SQL="select * from hokhau";
-        String soHoKhau = hoKhauXoaTF.getText();
-        ResultSet resultSet = statement.executeQuery(SQL);
-        int count = 0;
-        if (Objects.equals(soHoKhau, "")){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Kiểm tra thất bại");
-            alert.setContentText("Bạn chưa nhập số hộ khẩu!");
-            alert.showAndWait();
-            return;
-        }
-        while (resultSet.next()) {
-            String soHoKhauCheck = resultSet.getString(1);
-            if (soHoKhauCheck.compareTo(soHoKhau)==0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setHeaderText("Kiểm tra thành công");
-                alert.setContentText("Tên chủ hộ là: " + resultSet.getString(5));
-                alert.showAndWait();
-                count++;
-                return;
-            }
-        }
-        if (count == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Kiểm tra thất bại");
-            alert.setContentText("Số hộ khẩu không tồn tại");
-            alert.showAndWait();
-        }
-    }
-    public void xoaB() throws SQLException {
-        String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=user_of_QLNK;encrypt=false;user=nam;password=nam30112002";
-        Connection conn = DriverManager.getConnection(dbURL);
-        Statement statement = conn.createStatement();
-        String hoKhauXoa = hoKhauXoaTF.getText();
-        if (!check(hoKhauXoa)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Xóa thất bại");
-            alert.setContentText("Số hộ khẩu không tồn tại");
-            alert.showAndWait();
-            return;
-        }
-        if (Objects.equals(hoKhauXoa, "")){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Xóa thất bại");
-            alert.setContentText("Chưa nhập đủ thông tin");
-            alert.showAndWait();
-            return;
-        }
-        String SQL = "delete from nhankhau where sohokhau = '" + hoKhauXoa + "';" ;
-        statement.executeUpdate(SQL);
-        String SQL1 = "delete from hokhau where sohokhau = '" + hoKhauXoa + "';" ;
-        statement.executeUpdate(SQL1);
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thông báo");
-        alert.setHeaderText("Thành công");
-        alert.setContentText("Chúc mừng bạn đã xóa hộ khẩu thành công!");
-        alert.showAndWait();
-    }
-
-
 }

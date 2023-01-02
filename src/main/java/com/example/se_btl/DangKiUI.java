@@ -1,6 +1,7 @@
 package com.example.se_btl;
 
 import com.example.se_btl.App;
+import com.example.se_btl.service.SQLConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -73,11 +74,9 @@ public class DangKiUI {
             alert.showAndWait();
             return;
         }
-        String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=user_of_QLNK;encrypt=false;user=nam;password=nam30112002";
-        Connection conn = DriverManager.getConnection(dbURL);
-        Statement statement = conn.createStatement();
+
         String SQL = "select taikhoan from taikhoan";
-        ResultSet resultSet = statement.executeQuery(SQL);
+        ResultSet resultSet = SQLConnection.statement.executeQuery(SQL);
         int count = 0;
         while (resultSet.next()) {
             //System.out.println(resultSet.getString(1) + " | " + resultSet.getString(2));
@@ -97,7 +96,7 @@ public class DangKiUI {
         String SQL1 = "insert into taikhoan(taikhoan, matkhau, loai) values ('" + tenDangNhap + "','" + matKhau + "','" +
                 quyen + "');";
         System.out.println("dang ki thanh cong");
-        statement.executeUpdate(SQL1);
+        SQLConnection.statement.executeUpdate(SQL1);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText("Đăng kí thành công");
