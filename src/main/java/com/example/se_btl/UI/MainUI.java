@@ -2,6 +2,7 @@ package com.example.se_btl.UI;
 
 
 import com.example.se_btl.App;
+import com.example.se_btl.entity.HoKhau;
 import com.example.se_btl.entity.NhanKhau;
 import com.example.se_btl.service.SQLConnection;
 import javafx.collections.FXCollections;
@@ -19,6 +20,28 @@ import java.io.IOException;
 import java.sql.*;
 
 public class MainUI  {
+    @FXML
+    private ChoiceBox gioiTinhThongKeCB;
+    @FXML
+    private ChoiceBox tuThongKeCB;
+    @FXML
+    private ChoiceBox denThongKeCB;
+    @FXML
+    private Button chinhSuaB1;
+    @FXML
+    private Button themHoKhauB;
+    @FXML
+    private Button tachHoKhauB;
+    @FXML
+    private Button chuyenDiB;
+    @FXML
+    private TableView<HoKhau> bangHoKhau;
+    @FXML
+    private TableColumn<HoKhau, String> maHoKhauC;
+    @FXML
+    private TableColumn<HoKhau, String> tenChuHoC;
+    @FXML
+    private TableColumn<HoKhau, String> diaChiC;
     @FXML
     private Label nkTrenDiaBan;
     @FXML
@@ -52,8 +75,6 @@ public class MainUI  {
     private Button dangKiTamTruB;
     @FXML
     private Button xoaNhanKhauB;
-
-
 
 
     public void initialize() throws SQLException {
@@ -114,20 +135,35 @@ public class MainUI  {
             String diaChi = resultSet5.getString(14);
             list.add(new NhanKhau(id,hoTen,ngaySinh,gioiTinh,diaChi));
         }
-
-
-
         idCol.setCellValueFactory(new PropertyValueFactory<NhanKhau, Integer>("id"));
         hoTenCol.setCellValueFactory(new PropertyValueFactory<NhanKhau,String>("hoTen"));
         ngaySinhCol.setCellValueFactory(new PropertyValueFactory<NhanKhau,String>("ngaysinh"));
         gioiTinhCol.setCellValueFactory(new PropertyValueFactory<NhanKhau,String>("gioiTinh"));
         diaChiCol.setCellValueFactory(new PropertyValueFactory<NhanKhau,String>("diaChi"));
 
-
         bangNhanKhau.setItems(list);
 //        bangNhanKhau.getSelectionModel().getSelectedItem();
 //
 //        chinhSuaB.setDisable(true);
+
+        String sql6 = "select * from ho_khau inner join nhan_khau on ho_khau.idChuHo = nhan_khau.ID;";
+        ResultSet resultSet6 = SQLConnection.statement.executeQuery(sql6);
+        ObservableList<HoKhau> list1 = FXCollections.observableArrayList();
+
+
+        while (resultSet6.next()) {
+            String maHoKhau = resultSet6.getString("maHoKhau");
+            String hoTenChuHo = resultSet6.getString("hoTen");
+            String diaChi = resultSet6.getString("diaChi");
+            list1.add(new HoKhau(maHoKhau,hoTenChuHo,diaChi));
+        }
+        maHoKhauC.setCellValueFactory(new PropertyValueFactory<HoKhau, String>("maHoKhau"));
+        tenChuHoC.setCellValueFactory(new PropertyValueFactory<HoKhau,String>("tenChuHo"));
+        diaChiC.setCellValueFactory(new PropertyValueFactory<HoKhau,String>("diaChi"));
+        bangHoKhau.setItems(list1);
+
+        gioiTinhThongKeCB.getItems().addAll("Nam", "Nữ", "Khác");
+
     }
 
     public void themMoiNhanKhau() throws IOException {
@@ -232,6 +268,18 @@ public class MainUI  {
         alert.setContentText("Xóa thành công!");
         alert.showAndWait();
     }
-    
+
+    public void themHoKhau(){
+
+    }
+    public void tachHoKhau(){
+
+    }
+    public void chuyenDi(){
+
+    }
+    public void chinhSua1(){
+
+    }
 
 }

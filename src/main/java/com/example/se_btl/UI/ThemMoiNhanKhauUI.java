@@ -103,39 +103,39 @@ public class ThemMoiNhanKhauUI {
         System.out.println(sql);
         SQLConnection.statement.executeUpdate(sql);
 
-        if(true){
+        if(hocVan!=null){
             String sql1 = "UPDATE nhan_khau " + "SET trinhDoHocVan = N'"+ hocVan + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(true){
+        if(ngoaiNgu!=null){
             String sql1 = "UPDATE nhan_khau " + "SET trinhDoNgoaiNgu = N'"+ ngoaiNgu + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(true){
+        if(chuyenMon!=null){
             String sql1 = "UPDATE nhan_khau " + "SET TrinhDoChuyenMon = N'"+ chuyenMon + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(true){
+        if(bietDanh!=null){
             String sql1 = "UPDATE nhan_khau " + "SET bietDanh = N'"+ bietDanh + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(true){
+        if(tonGiao!=null){
             String sql1 = "UPDATE nhan_khau " + "SET tonGiao = N'"+ tonGiao + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(true){
+        if(hoChieu!=null){
             String sql1 = "UPDATE nhan_khau " + "SET soHoChieu = N'"+ hoChieu + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(true){
+        if(ngheNghiep!=null){
             String sql1 = "UPDATE nhan_khau " + "SET ngheNghiep = N'"+ ngheNghiep + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(true){
+        if(bietTiengDanToc!=null){
             String sql1 = "UPDATE nhan_khau " + "SET bietTiengDanToc = N'"+ bietTiengDanToc + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(true){
+        if(noiLamViec!=null){
             String sql1 = "UPDATE nhan_khau " + "SET noiLamViec = N'"+ noiLamViec + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }

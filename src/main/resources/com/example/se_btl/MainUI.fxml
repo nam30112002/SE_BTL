@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -80,16 +82,59 @@
                     </content>
                 </Tab>
                 <Tab text="Hộ khẩu">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <TableView fx:id="bangHoKhau" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn fx:id="maHoKhauC" prefWidth="135.99999392032623" text="Mã hộ khẩu" />
+                            <TableColumn fx:id="tenChuHoC" prefWidth="206.39999389648438" text="Tên chủ hộ" />
+                              <TableColumn fx:id="diaChiC" maxWidth="1.7976931348623157E308" prefWidth="356.0000305175781" text="Địa chỉ" />
+                          </columns>
+                        </TableView>
+                     </center>
+                     <right>
+                        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Button fx:id="themHoKhauB" layoutY="80.0" mnemonicParsing="false" onAction="#themHoKhau" prefHeight="35.0" prefWidth="200.0" text="Thêm mới" />
+                              <Button fx:id="tachHoKhauB" layoutY="160.0" mnemonicParsing="false" onAction="#tachHoKhau" prefHeight="35.0" prefWidth="200.0" text="Tách hộ khẩu" />
+                              <Button fx:id="chuyenDiB" layoutY="240.0" mnemonicParsing="false" onAction="#chuyenDi" prefHeight="35.0" prefWidth="200.0" text="Chuyển đi" />
+                              <Button fx:id="chinhSuaB1" layoutY="320.0" mnemonicParsing="false" onAction="#chinhSua1" prefHeight="35.0" prefWidth="200.0" text="Chỉnh sửa" />
+                           </children>
+                        </Pane>
+                     </right>
+                  </BorderPane>
+               </content>
                 </Tab>
                 <Tab text="Thống kê">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <TableView prefHeight="389.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </center>
+                     <top>
+                        <Pane prefHeight="53.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label layoutX="77.0" layoutY="15.0" prefHeight="25.0" text="Giới tính:" />
+                              <ChoiceBox fx:id="gioiTinhThongKeCB" layoutX="129.0" layoutY="15.0" prefHeight="25.0" prefWidth="76.0" />
+                              <Label layoutX="388.0" layoutY="15.0" prefHeight="25.0" text="Độ tuổi:" />
+                              <Label layoutX="433.0" layoutY="15.0" prefHeight="25.0" text="Từ:" />
+                              <Label layoutX="510.0" layoutY="15.0" prefHeight="25.0" text="Đến:" />
+                              <Button layoutX="799.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Show" />
+                              <ComboBox layoutX="453.0" layoutY="15.0" prefHeight="25.0" prefWidth="43.0" />
+                              <ComboBox layoutX="537.0" layoutY="15.0" prefHeight="25.0" prefWidth="23.0" />
+                           </children>
+                        </Pane>
+                     </top>
+                  </BorderPane>
+               </content>
                 </Tab>
-                <Tab text="Tìm kiếm">
+                <Tab text="Lịch sử">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
