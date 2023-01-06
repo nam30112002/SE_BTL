@@ -1,4 +1,4 @@
-package com.example.se_btl;
+package com.example.se_btl.UI;
 
 import com.example.se_btl.App;
 import com.example.se_btl.service.SQLConnection;
@@ -40,7 +40,7 @@ public class DangKiUI {
         System.out.println("quay lai thanh cong");
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoginUI.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); //lay stage chua LoginUI
+        Stage stage = (Stage) quayLai.getScene().getWindow(); //lay stage chua LoginUI
         stage.setTitle("Quản lý trao thưởng - Đăng nhập");
         stage.setScene(scene);
         stage.show();

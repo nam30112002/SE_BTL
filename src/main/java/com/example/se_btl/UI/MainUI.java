@@ -1,6 +1,8 @@
-package com.example.se_btl;
+package com.example.se_btl.UI;
 
 
+import com.example.se_btl.App;
+import com.example.se_btl.entity.NhanKhau;
 import com.example.se_btl.service.SQLConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -44,6 +46,12 @@ public class MainUI  {
     private MenuBar menuBar;
     @FXML
     private Button chinhSuaB;
+    @FXML
+    private Button dkiTamVangB;
+    @FXML
+    private Button dangKiTamTruB;
+    @FXML
+    private Button xoaNhanKhauB;
 
 
 
@@ -159,4 +167,71 @@ public class MainUI  {
         stage.setX(x);
         stage.setY(y);
     }
+
+    public void dangKiTamVang() throws IOException {
+        if(bangNhanKhau.getSelectionModel().getSelectedItem()==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Thất bại");
+            alert.setContentText("Chưa chọn nhân khẩu trong bảng");
+            alert.showAndWait();
+            return;
+        }
+        NhanKhau.idTarget = bangNhanKhau.getSelectionModel().getSelectedItem().getId();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("DangKiTamVangUI.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) menuBar.getScene().getWindow();//tranh loi NUllPointer
+        stage.setTitle("Đăng kí tạm vắng");
+        stage.setScene(scene);
+        stage.show();
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
+    }
+
+    public void dangKiTamTru() throws IOException {
+        if(bangNhanKhau.getSelectionModel().getSelectedItem()==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Thất bại");
+            alert.setContentText("Chưa chọn nhân khẩu trong bảng");
+            alert.showAndWait();
+            return;
+        }
+        NhanKhau.idTarget = bangNhanKhau.getSelectionModel().getSelectedItem().getId();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("DangKiTamTruUI.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) menuBar.getScene().getWindow();//tranh loi NUllPointer
+        stage.setTitle("Đăng kí tạm trú");
+        stage.setScene(scene);
+        stage.show();
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
+    }
+    public void xoaNhanKhau() throws SQLException {
+        if(bangNhanKhau.getSelectionModel().getSelectedItem()==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Thất bại");
+            alert.setContentText("Chưa chọn nhân khẩu trong bảng");
+            alert.showAndWait();
+            return;
+        }
+        NhanKhau.idTarget = bangNhanKhau.getSelectionModel().getSelectedItem().getId();
+        String sql = "delete from nhan_khau where ID = " + NhanKhau.idTarget + ";";
+        SQLConnection.statement.executeUpdate(sql);
+        this.initialize();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText("Thành công");
+        alert.setContentText("Xóa thành công!");
+        alert.showAndWait();
+    }
+    
+
 }

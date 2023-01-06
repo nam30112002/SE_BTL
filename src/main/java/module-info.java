@@ -5,6 +5,10 @@ module com.example.se_btl {
 
     exports com.example.se_btl;
     opens com.example.se_btl to javafx.fxml;
+    exports com.example.se_btl.entity;
+    opens com.example.se_btl.entity to javafx.fxml;
+    exports com.example.se_btl.UI;
+    opens com.example.se_btl.UI to javafx.fxml;
 
 
 }

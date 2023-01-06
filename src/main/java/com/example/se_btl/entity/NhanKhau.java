@@ -1,4 +1,4 @@
-package com.example.se_btl;
+package com.example.se_btl.entity;
 
 public class NhanKhau {
     private int id;

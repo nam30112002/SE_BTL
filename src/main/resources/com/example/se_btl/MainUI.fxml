@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.MainUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.MainUI">
     <top>
         <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
             <menus>
@@ -67,11 +67,12 @@
                             <right>
                                 <Pane prefHeight="346.0" prefWidth="147.0" BorderPane.alignment="CENTER">
                                     <children>
-                                        <Button layoutX="1.0" layoutY="255.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="147.0" text="Đăng kí tạm trú" />
-                                        <Button fx:id="themMoiB" layoutX="1.0" layoutY="62.0" mnemonicParsing="false" onAction="#themMoiNhanKhau" prefHeight="25.0" prefWidth="146.0" text="Thêm mới" />
-                                        <Button layoutY="111.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Đăng kí tạm vắng" />
-                                        <Button fx:id="chinhSuaB" layoutY="208.0" mnemonicParsing="false" onAction="#chinhSua" prefHeight="25.0" prefWidth="148.0" text="Chỉnh sửa" />
-                                        <Button layoutX="-1.0" layoutY="160.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Khai tử" />
+                                        <Button fx:id="dangKiTamTruB" layoutY="300.0" mnemonicParsing="false" onAction="#dangKiTamTru" prefHeight="25.0" prefWidth="147.0" text="Đăng kí tạm trú" />
+                                        <Button fx:id="themMoiB" layoutY="60.0" mnemonicParsing="false" onAction="#themMoiNhanKhau" prefHeight="25.0" prefWidth="147.0" text="Thêm mới" />
+                                        <Button fx:id="dkiTamVangB" layoutY="240.0" mnemonicParsing="false" onAction="#dangKiTamVang" prefHeight="25.0" prefWidth="149.0" text="Đăng kí tạm vắng" />
+                                        <Button fx:id="chinhSuaB" layoutY="120.0" mnemonicParsing="false" onAction="#chinhSua" prefHeight="25.0" prefWidth="148.0" text="Chỉnh sửa" />
+                                        <Button layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Khai tử" />
+                              <Button layoutY="360.0" mnemonicParsing="false" onAction="#xoaNhanKhau" prefHeight="25.0" prefWidth="148.0" text="Xóa nhân khẩu" fx:id="xoaNhanKhauB" />
                                     </children>
                                 </Pane>
                             </right>

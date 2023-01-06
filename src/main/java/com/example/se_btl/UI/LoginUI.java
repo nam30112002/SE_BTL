@@ -1,4 +1,4 @@
-package com.example.se_btl;
+package com.example.se_btl.UI;
 
 import com.example.se_btl.App;
 import com.example.se_btl.UserController;

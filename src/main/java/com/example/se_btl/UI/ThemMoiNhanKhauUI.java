@@ -1,5 +1,6 @@
-package com.example.se_btl;
+package com.example.se_btl.UI;
 
+import com.example.se_btl.App;
 import com.example.se_btl.service.SQLConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -102,39 +103,39 @@ public class ThemMoiNhanKhauUI {
         System.out.println(sql);
         SQLConnection.statement.executeUpdate(sql);
 
-        if(hocVan.length()!=0){
+        if(true){
             String sql1 = "UPDATE nhan_khau " + "SET trinhDoHocVan = N'"+ hocVan + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(ngoaiNgu.length()!=0){
+        if(true){
             String sql1 = "UPDATE nhan_khau " + "SET trinhDoNgoaiNgu = N'"+ ngoaiNgu + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(chuyenMon.length()!=0){
+        if(true){
             String sql1 = "UPDATE nhan_khau " + "SET TrinhDoChuyenMon = N'"+ chuyenMon + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(bietDanh.length()!=0){
+        if(true){
             String sql1 = "UPDATE nhan_khau " + "SET bietDanh = N'"+ bietDanh + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(tonGiao.length()!=0){
+        if(true){
             String sql1 = "UPDATE nhan_khau " + "SET tonGiao = N'"+ tonGiao + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(hoChieu.length()!=0){
+        if(true){
             String sql1 = "UPDATE nhan_khau " + "SET soHoChieu = N'"+ hoChieu + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(ngheNghiep.length()!=0){
+        if(true){
             String sql1 = "UPDATE nhan_khau " + "SET ngheNghiep = N'"+ ngheNghiep + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(bietTiengDanToc.length()!=0){
+        if(true){
             String sql1 = "UPDATE nhan_khau " + "SET bietTiengDanToc = N'"+ bietTiengDanToc + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(noiLamViec.length()!=0){
+        if(true){
             String sql1 = "UPDATE nhan_khau " + "SET noiLamViec = N'"+ noiLamViec + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }

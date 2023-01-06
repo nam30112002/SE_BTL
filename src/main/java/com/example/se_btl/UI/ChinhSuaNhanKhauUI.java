@@ -1,5 +1,7 @@
-package com.example.se_btl;
+package com.example.se_btl.UI;
 
+import com.example.se_btl.App;
+import com.example.se_btl.entity.NhanKhau;
 import com.example.se_btl.service.SQLConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,12 +12,9 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -66,9 +65,7 @@ public class ChinhSuaNhanKhauUI {
     private Button backB;
 
     public void initialize() throws SQLException, ParseException {
-        System.out.println(1);
         int idOrigin = NhanKhau.idTarget;
-        System.out.println(idOrigin);
         String sql = "SELECT * FROM nhan_khau WHERE ID = " + idOrigin + ";";
         ResultSet resultSet = SQLConnection.statement.executeQuery(sql);
         while (resultSet.next()){
@@ -83,6 +80,7 @@ public class ChinhSuaNhanKhauUI {
 
             String CCCD = resultSet.getString("CCCD");
             CCCDTF.setText(CCCD);
+
 
             String noiThuongTru = resultSet.getString("noiThuongTru");
             noiThuongTruTF.setText(noiThuongTru);
@@ -182,39 +180,39 @@ public class ChinhSuaNhanKhauUI {
         System.out.println(sql);
         SQLConnection.statement.executeUpdate(sql);
 
-        if(true){
+        if(hocVan!=null){
             String sql1 = "UPDATE nhan_khau " + "SET trinhDoHocVan = N'"+ hocVan + "' WHERE id = '" + NhanKhau.idTarget + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(true){
+        if(ngoaiNgu!=null){
             String sql1 = "UPDATE nhan_khau " + "SET trinhDoNgoaiNgu = N'"+ ngoaiNgu + "' WHERE id = '" + NhanKhau.idTarget + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(true){
+        if(chuyenMon!=null){
             String sql1 = "UPDATE nhan_khau " + "SET TrinhDoChuyenMon = N'"+ chuyenMon + "' WHERE id = '" + NhanKhau.idTarget + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(true){
+        if(bietDanh!=null){
             String sql1 = "UPDATE nhan_khau " + "SET bietDanh = N'"+ bietDanh + "' WHERE id = '" + NhanKhau.idTarget + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(true){
+        if(tonGiao!=null){
             String sql1 = "UPDATE nhan_khau " + "SET tonGiao = N'"+ tonGiao + "' WHERE id = '" + NhanKhau.idTarget + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(true){
+        if(hoChieu!=null){
             String sql1 = "UPDATE nhan_khau " + "SET soHoChieu = N'"+ hoChieu + "' WHERE id = '" + NhanKhau.idTarget + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(true){
+        if(ngheNghiep!=null){
             String sql1 = "UPDATE nhan_khau " + "SET ngheNghiep = N'"+ ngheNghiep + "' WHERE id = '" + NhanKhau.idTarget + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(true){
+        if(bietTiengDanToc!=null){
             String sql1 = "UPDATE nhan_khau " + "SET bietTiengDanToc = N'"+ bietTiengDanToc + "' WHERE id = '" + NhanKhau.idTarget + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        if(true){
+        if(noiLamViec!=null){
             String sql1 = "UPDATE nhan_khau " + "SET noiLamViec = N'"+ noiLamViec + "' WHERE id = '" + NhanKhau.idTarget + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFECA8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.LoginUI">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFECA8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.LoginUI">
     <children>
         <TextField fx:id="tenDangNhapField" layoutX="225.0" layoutY="163.0" prefHeight="26.0" prefWidth="202.0" />
         <PasswordField fx:id="matKhauField" layoutX="225.0" layoutY="200.0" prefHeight="26.0" prefWidth="201.0" />
