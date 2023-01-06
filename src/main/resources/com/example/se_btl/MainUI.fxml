@@ -110,10 +110,13 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <TableView prefHeight="389.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+                        <TableView fx:id="bangThongKe" prefHeight="389.0" prefWidth="900.0" BorderPane.alignment="CENTER">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
+                            <TableColumn fx:id="idThongKeC" prefWidth="68.00000154972076" text="ID" />
+                            <TableColumn fx:id="hoTenThongKeC" prefWidth="190.39995574951172" text="Họ tên" />
+                              <TableColumn fx:id="ngaySinhThongKeC" prefWidth="148.00006103515625" text="Ngày sinh" />
+                              <TableColumn fx:id="gioiTinhThongKeC" prefWidth="109.59994506835938" text="Giới tính" />
+                              <TableColumn fx:id="diaChiThongKeC" prefWidth="381.5999755859375" text="Địa chỉ" />
                           </columns>
                         </TableView>
                      </center>
@@ -124,10 +127,10 @@
                               <ChoiceBox fx:id="gioiTinhThongKeCB" layoutX="129.0" layoutY="15.0" prefHeight="25.0" prefWidth="76.0" />
                               <Label layoutX="388.0" layoutY="15.0" prefHeight="25.0" text="Độ tuổi:" />
                               <Label layoutX="433.0" layoutY="15.0" prefHeight="25.0" text="Từ:" />
-                              <Label layoutX="510.0" layoutY="15.0" prefHeight="25.0" text="Đến:" />
-                              <Button layoutX="799.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="68.0" text="Show" />
-                              <ComboBox layoutX="453.0" layoutY="15.0" prefHeight="25.0" prefWidth="43.0" />
-                              <ComboBox layoutX="537.0" layoutY="15.0" prefHeight="25.0" prefWidth="23.0" />
+                              <Label layoutX="525.0" layoutY="15.0" prefHeight="25.0" text="Đến:" />
+                              <Button fx:id="showB" layoutX="799.0" layoutY="15.0" mnemonicParsing="false" onAction="#show" prefHeight="25.0" prefWidth="68.0" text="Show" />
+                              <ComboBox fx:id="tuThongKeCB" layoutX="453.0" layoutY="15.0" prefHeight="25.0" prefWidth="65.0" />
+                              <ComboBox fx:id="denThongKeCB" layoutX="552.0" layoutY="15.0" prefHeight="25.0" prefWidth="65.0" />
                            </children>
                         </Pane>
                      </top>

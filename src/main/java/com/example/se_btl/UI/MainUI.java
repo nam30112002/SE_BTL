@@ -18,14 +18,27 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.Objects;
 
 public class MainUI  {
     @FXML
-    private ChoiceBox gioiTinhThongKeCB;
+    private TableColumn<NhanKhau,Integer> idThongKeC;
     @FXML
-    private ChoiceBox tuThongKeCB;
+    private TableColumn<NhanKhau,String> hoTenThongKeC;
     @FXML
-    private ChoiceBox denThongKeCB;
+    private TableColumn<NhanKhau,String> ngaySinhThongKeC;
+    @FXML
+    private TableColumn<NhanKhau,String> gioiTinhThongKeC;
+    @FXML
+    private TableColumn<NhanKhau,String> diaChiThongKeC;
+    @FXML
+    private TableView<NhanKhau> bangThongKe;
+    @FXML
+    private ChoiceBox<String> gioiTinhThongKeCB;
+    @FXML
+    private ComboBox tuThongKeCB;
+    @FXML
+    private ComboBox denThongKeCB;
     @FXML
     private Button chinhSuaB1;
     @FXML
@@ -75,6 +88,8 @@ public class MainUI  {
     private Button dangKiTamTruB;
     @FXML
     private Button xoaNhanKhauB;
+    @FXML
+    private Button showB;
 
 
     public void initialize() throws SQLException {
@@ -162,8 +177,15 @@ public class MainUI  {
         diaChiC.setCellValueFactory(new PropertyValueFactory<HoKhau,String>("diaChi"));
         bangHoKhau.setItems(list1);
 
-        gioiTinhThongKeCB.getItems().addAll("Nam", "Nữ", "Khác");
-
+        gioiTinhThongKeCB.getItems().addAll("Tất cả","Nam", "Nữ", "Khác");
+        gioiTinhThongKeCB.setValue("Tất cả");
+        for(int i=0;i<100;i++) {
+            tuThongKeCB.getItems().add(i);
+            denThongKeCB.getItems().add(i);
+        }
+        denThongKeCB.getItems().add("Max");
+        denThongKeCB.setValue("Max");
+        tuThongKeCB.setValue(0);
     }
 
     public void themMoiNhanKhau() throws IOException {
@@ -279,6 +301,50 @@ public class MainUI  {
 
     }
     public void chinhSua1(){
+
+    }
+
+    public void show() throws SQLException {
+        String gioiTinh = gioiTinhThongKeCB.getValue();
+        System.out.println(gioiTinh);
+        String minTuoi = tuThongKeCB.getValue().toString();
+        String maxTuoi = denThongKeCB.getValue().toString();
+        //System.out.println(minTuoi + maxTuoi + gioiTinh);
+        String sql = "";
+        ObservableList<NhanKhau> list = FXCollections.observableArrayList();
+
+        if(Objects.equals(gioiTinh, "Tất cả") && Objects.equals(maxTuoi, "Max")){
+            sql = "select * from nhan_khau where (year(getdate()) - year(namsinh)) >= " + minTuoi;
+        }
+        if(Objects.equals(gioiTinh, "Tất cả") && !Objects.equals(maxTuoi, "Max")){
+            sql = "select * from nhan_khau where (year(getdate()) - year(namsinh)) >= " + minTuoi
+                + "and (year(getdate()) - year(namsinh)) <= " + maxTuoi;
+        }
+        if(gioiTinh!="Tất cả" && !Objects.equals(maxTuoi, "Max")){
+            System.out.println(111);
+            sql = "select * from nhan_khau where (year(getdate()) - year(namsinh)) >= " + minTuoi
+                    + "and (year(getdate()) - year(namsinh)) <= " + maxTuoi + " and gioiTinh = N'" + gioiTinh
+                    + "';";
+            System.out.println(sql);
+        }
+
+        ResultSet resultSet = SQLConnection.statement.executeQuery(sql);
+        while (resultSet.next()){
+            int id = resultSet.getInt(1);
+            String hoTen = resultSet.getString(3);
+            String ngaySinh = String.valueOf(resultSet.getDate(5));
+            //System.out.println(ngaySinh);
+            String gioiTinh1 = resultSet.getString(6);
+            String diaChi = resultSet.getString("diaChiHienNay");
+            list.add(new NhanKhau(id,hoTen,ngaySinh,gioiTinh1,diaChi));
+        }
+        idThongKeC.setCellValueFactory(new PropertyValueFactory<NhanKhau, Integer>("id"));
+        hoTenThongKeC.setCellValueFactory(new PropertyValueFactory<NhanKhau,String>("hoTen"));
+        ngaySinhThongKeC.setCellValueFactory(new PropertyValueFactory<NhanKhau,String>("ngaysinh"));
+        gioiTinhThongKeC.setCellValueFactory(new PropertyValueFactory<NhanKhau,String>("gioiTinh"));
+        diaChiThongKeC.setCellValueFactory(new PropertyValueFactory<NhanKhau,String>("diaChi"));
+
+        bangThongKe.setItems(list);
 
     }
 
