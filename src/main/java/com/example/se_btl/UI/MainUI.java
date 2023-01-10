@@ -4,6 +4,7 @@ package com.example.se_btl.UI;
 import com.example.se_btl.App;
 import com.example.se_btl.entity.HoKhau;
 import com.example.se_btl.entity.NhanKhau;
+import com.example.se_btl.entity.ThanhVienGiaDinh;
 import com.example.se_btl.service.SQLConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +22,8 @@ import java.sql.*;
 import java.util.Objects;
 
 public class MainUI  {
+    @FXML
+    private Button thayDoiHKB;
     @FXML
     private TableColumn<NhanKhau,Integer> idThongKeC;
     @FXML
@@ -189,7 +192,6 @@ public class MainUI  {
     }
 
     public void themMoiNhanKhau() throws IOException {
-        //System.out.println("alo");
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("ThemMoiNhanKhauUI.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = (Stage) menuBar.getScene().getWindow();//tranh loi NUllPointer
@@ -291,8 +293,18 @@ public class MainUI  {
         alert.showAndWait();
     }
 
-    public void themHoKhau(){
-
+    public void themHoKhau() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("ThemHoKhauUI.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) menuBar.getScene().getWindow();//tranh loi NUllPointer
+        stage.setTitle("Thêm hộ khẩu");
+        stage.setScene(scene);
+        stage.show();
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
     }
     public void tachHoKhau(){
 
@@ -302,6 +314,32 @@ public class MainUI  {
     }
     public void chinhSua1(){
 
+    }
+
+    public void thayDoiHoKhau() throws IOException {
+        if(bangHoKhau.getSelectionModel().getSelectedItem()==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Chỉnh sửa thất bại");
+            alert.setContentText("Chưa chọn hộ khẩu trong bảng");
+            alert.showAndWait();
+            return;
+        }
+        ThanhVienGiaDinh.maHoKhauTarget = bangHoKhau.getSelectionModel().getSelectedItem().getMaHoKhau();
+
+
+
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("ThayDoiHoKhauUI.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) menuBar.getScene().getWindow();//tranh loi NUllPointer
+        stage.setTitle("Xem và thay đổi thành viên hộ khẩu");
+        stage.setScene(scene);
+        stage.show();
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
     }
 
     public void show() throws SQLException {
@@ -321,11 +359,15 @@ public class MainUI  {
                 + "and (year(getdate()) - year(namsinh)) <= " + maxTuoi;
         }
         if(gioiTinh!="Tất cả" && !Objects.equals(maxTuoi, "Max")){
-            System.out.println(111);
             sql = "select * from nhan_khau where (year(getdate()) - year(namsinh)) >= " + minTuoi
                     + "and (year(getdate()) - year(namsinh)) <= " + maxTuoi + " and gioiTinh = N'" + gioiTinh
                     + "';";
-            System.out.println(sql);
+            //System.out.println(sql);
+        }
+        if(gioiTinh!="Tất cả" && Objects.equals(maxTuoi, "Max")){
+            sql = "select * from nhan_khau where (year(getdate()) - year(namsinh)) >= " + minTuoi
+                     + " and gioiTinh = N'" + gioiTinh
+                    + "';";
         }
 
         ResultSet resultSet = SQLConnection.statement.executeQuery(sql);
@@ -347,5 +389,6 @@ public class MainUI  {
         bangThongKe.setItems(list);
 
     }
+
 
 }

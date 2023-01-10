@@ -69,12 +69,12 @@
                             <right>
                                 <Pane prefHeight="346.0" prefWidth="147.0" BorderPane.alignment="CENTER">
                                     <children>
-                                        <Button fx:id="dangKiTamTruB" layoutY="300.0" mnemonicParsing="false" onAction="#dangKiTamTru" prefHeight="25.0" prefWidth="147.0" text="Đăng kí tạm trú" />
-                                        <Button fx:id="themMoiB" layoutY="60.0" mnemonicParsing="false" onAction="#themMoiNhanKhau" prefHeight="25.0" prefWidth="147.0" text="Thêm mới" />
-                                        <Button fx:id="dkiTamVangB" layoutY="240.0" mnemonicParsing="false" onAction="#dangKiTamVang" prefHeight="25.0" prefWidth="149.0" text="Đăng kí tạm vắng" />
+                                        <Button fx:id="dangKiTamTruB" layoutY="300.0" mnemonicParsing="false" onAction="#dangKiTamTru" prefHeight="25.0" prefWidth="148.0" text="Đăng kí tạm trú" />
+                                        <Button fx:id="themMoiB" layoutY="60.0" mnemonicParsing="false" onAction="#themMoiNhanKhau" prefHeight="25.0" prefWidth="148.0" text="Thêm mới" />
+                                        <Button fx:id="dkiTamVangB" layoutY="240.0" mnemonicParsing="false" onAction="#dangKiTamVang" prefHeight="25.0" prefWidth="148.0" text="Đăng kí tạm vắng" />
                                         <Button fx:id="chinhSuaB" layoutY="120.0" mnemonicParsing="false" onAction="#chinhSua" prefHeight="25.0" prefWidth="148.0" text="Chỉnh sửa" />
-                                        <Button layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Khai tử" />
-                              <Button layoutY="360.0" mnemonicParsing="false" onAction="#xoaNhanKhau" prefHeight="25.0" prefWidth="148.0" text="Xóa nhân khẩu" fx:id="xoaNhanKhauB" />
+                                        <Button layoutY="360.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="148.0" text="Khai tử" />
+                              <Button layoutY="180.0" mnemonicParsing="false" onAction="#xoaNhanKhau" prefHeight="25.0" prefWidth="148.0" text="Xóa nhân khẩu" fx:id="xoaNhanKhauB" />
                                     </children>
                                 </Pane>
                             </right>
@@ -96,17 +96,18 @@
                      <right>
                         <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Button fx:id="themHoKhauB" layoutY="80.0" mnemonicParsing="false" onAction="#themHoKhau" prefHeight="35.0" prefWidth="200.0" text="Thêm mới" />
-                              <Button fx:id="tachHoKhauB" layoutY="160.0" mnemonicParsing="false" onAction="#tachHoKhau" prefHeight="35.0" prefWidth="200.0" text="Tách hộ khẩu" />
-                              <Button fx:id="chuyenDiB" layoutY="240.0" mnemonicParsing="false" onAction="#chuyenDi" prefHeight="35.0" prefWidth="200.0" text="Chuyển đi" />
-                              <Button fx:id="chinhSuaB1" layoutY="320.0" mnemonicParsing="false" onAction="#chinhSua1" prefHeight="35.0" prefWidth="200.0" text="Chỉnh sửa" />
+                              <Button fx:id="themHoKhauB" layoutY="80.0" mnemonicParsing="false" onAction="#themHoKhau" prefHeight="44.0" prefWidth="200.0" text="Thêm mới hộ khẩu" />
+                              <Button fx:id="tachHoKhauB" layoutY="160.0" mnemonicParsing="false" onAction="#tachHoKhau" prefHeight="44.0" prefWidth="200.0" text="Tách hộ khẩu" />
+                              <Button fx:id="chuyenDiB" layoutY="240.0" mnemonicParsing="false" onAction="#chuyenDi" prefHeight="44.0" prefWidth="200.0" text="Chuyển đi" />
+                              <Button fx:id="chinhSuaB1" layoutY="320.0" mnemonicParsing="false" onAction="#chinhSua1" prefHeight="44.0" prefWidth="200.0" text="Chỉnh sửa" />
+                              <Button fx:id="thayDoiHKB" layoutY="400.0" mnemonicParsing="false" onAction="#thayDoiHoKhau" prefHeight="44.0" prefWidth="200.0" text="Xem và thay đổi &#10;thành viên hộ khẩu" textAlignment="CENTER" />
                            </children>
                         </Pane>
                      </right>
                   </BorderPane>
                </content>
                 </Tab>
-                <Tab text="Thống kê">
+                <Tab text="Thống kê nhân khẩu">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <center>

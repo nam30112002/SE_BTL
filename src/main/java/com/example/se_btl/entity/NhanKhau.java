@@ -7,6 +7,7 @@ public class NhanKhau {
     private String gioiTinh;
     private String diaChi;
     public static int idTarget;
+    public static String tenTimKiem;
 
     public NhanKhau(int id, String hoTen, String ngaysinh,String gioiTinh, String diaChi){
         this.id = id;

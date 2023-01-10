@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.ThayDoiHoKhauUI">
+   <top>
+      <Pane prefHeight="59.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="label1" layoutX="154.0" layoutY="25.0" text="Danh sách thành viên của hộ khẩu + Mã hộ khẩu" />
+            <Button fx:id="backB" layoutX="25.0" layoutY="21.0" mnemonicParsing="false" onAction="#back" text="Back" />
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <TableView fx:id="bangThanhVien" prefHeight="317.0" prefWidth="425.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="hoTenCol" prefWidth="161.60003662109375" text="Họ tên" />
+                <TableColumn fx:id="ngaySinhCol" prefWidth="123.199951171875" text="Ngày sinh" />
+                  <TableColumn fx:id="quanHeCol" prefWidth="162.39996337890625" text="Quan hệ với chủ hộ" />
+              </columns>
+            </TableView>
+         </center>
+         <right>
+            <Pane prefHeight="317.0" prefWidth="155.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="themThanhVienB" layoutY="90.0" mnemonicParsing="false" onAction="#themThanhVien" prefHeight="25.0" prefWidth="155.0" text="Thêm thành viên" />
+                  <Button layoutY="210.0" mnemonicParsing="false" prefWidth="155.0" text="Đổi chủ hộ" />
+                  <Button fx:id="resetB" layoutY="30.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="155.0" text="RESET" />
+                  <Button layoutY="150.0" mnemonicParsing="false" onAction="#xoaThanhVien" prefWidth="155.0" text="Xóa thành viên" fx:id="xoaB" />
+               </children>
+            </Pane>
+         </right>
+      </BorderPane>
+   </center>
+</BorderPane>
