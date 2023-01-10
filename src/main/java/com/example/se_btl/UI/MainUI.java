@@ -8,6 +8,7 @@ import com.example.se_btl.entity.ThanhVienGiaDinh;
 import com.example.se_btl.service.SQLConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -93,6 +94,26 @@ public class MainUI  {
     private Button xoaNhanKhauB;
     @FXML
     private Button showB;
+
+
+    public void logOut(ActionEvent event) throws IOException, SQLException {
+        System.out.println("da log out");
+
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoginUI.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+
+        //Stage stage = (Stage)( (Node) event.getSource() ).getScene().getWindow(); //lay stage chua LoginUI
+        //Stage stage = (Stage)dangXuat.getParentPopup().getOwnerWindow(); //menuitem khong phai la lop con cua Node
+        Stage stage = (Stage) menuBar.getScene().getWindow();//tranh loi NUllPointer
+        stage.setTitle("Quản lý trao thưởng - Đăng nhập");
+        stage.setScene(scene);
+        stage.show();
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
+    }
 
 
     public void initialize() throws SQLException {
@@ -388,6 +409,23 @@ public class MainUI  {
 
         bangThongKe.setItems(list);
 
+    }
+
+    public void chuyenDoiMatKhauUI(ActionEvent event) throws IOException {
+        System.out.println("chuyen doi mat khau");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("DoiMatKhauUI.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        //Stage stage = (Stage)( (Node) event.getSource() ).getScene().getWindow(); //lay stage chua LoginUI
+        //Stage stage = (Stage)dangXuat.getParentPopup().getOwnerWindow(); //menuitem khong phai la lop con cua Node
+        Stage stage = (Stage) menuBar.getScene().getWindow();//tranh loi NUllPointer
+        stage.setTitle("Quản lý trao thưởng - Đổi mật khẩu");
+        stage.setScene(scene);
+        stage.show();
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
     }
 
 

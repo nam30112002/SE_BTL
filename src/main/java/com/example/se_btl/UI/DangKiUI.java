@@ -31,10 +31,7 @@ public class DangKiUI {
     @FXML
     private PasswordField xacNhanMatKhauDK;
 
-    public void initialize() {
-        chonQuyen.getItems().addAll("nguoi dung", "can bo");
 
-    }
 
     public void quayLaiLoginUI(ActionEvent event) throws IOException {
         System.out.println("quay lai thanh cong");
@@ -56,7 +53,6 @@ public class DangKiUI {
         String tenDangNhap = tenDangNhapDK.getText();
         String matKhau = matKhauDK.getText();
         String xacNhanMatKhau = xacNhanMatKhauDK.getText();
-        String quyen = chonQuyen.getValue();
         if (!Objects.equals(xacNhanMatKhau, matKhau)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -65,7 +61,7 @@ public class DangKiUI {
             alert.showAndWait();
             return;
         }
-        if (Objects.equals(matKhau, "") || Objects.equals(tenDangNhap, "") || quyen == null) {
+        if (Objects.equals(matKhau, "") || Objects.equals(tenDangNhap, "")) {
             System.out.println("thieuthongtin");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -75,12 +71,12 @@ public class DangKiUI {
             return;
         }
 
-        String SQL = "select taikhoan from taikhoan";
+        String SQL = "select * from users";
         ResultSet resultSet = SQLConnection.statement.executeQuery(SQL);
         int count = 0;
         while (resultSet.next()) {
             //System.out.println(resultSet.getString(1) + " | " + resultSet.getString(2));
-            String tenDangNhapDeCheck = resultSet.getString(1);
+            String tenDangNhapDeCheck = resultSet.getString(2);
             if (Objects.equals(tenDangNhap, tenDangNhapDeCheck)) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
@@ -93,9 +89,8 @@ public class DangKiUI {
         }
         if (count > 0) return;
 
-        String SQL1 = "insert into taikhoan(taikhoan, matkhau, loai) values ('" + tenDangNhap + "','" + matKhau + "','" +
-                quyen + "');";
-        System.out.println("dang ki thanh cong");
+        String SQL1 = "insert into users(userName, passwd) values ('" + tenDangNhap + "','" + matKhau +"');";
+        System.out.println("Đăng kí thành công");
         SQLConnection.statement.executeUpdate(SQL1);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");

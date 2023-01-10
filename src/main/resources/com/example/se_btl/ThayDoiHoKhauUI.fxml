@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.ThayDoiHoKhauUI">
    <top>
       <Pane prefHeight="59.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -22,9 +21,10 @@
          <center>
             <TableView fx:id="bangThanhVien" prefHeight="317.0" prefWidth="425.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn fx:id="hoTenCol" prefWidth="161.60003662109375" text="Họ tên" />
+                  <TableColumn fx:id="idCol" prefWidth="52.79998779296875" text="ID" />
+                <TableColumn fx:id="hoTenCol" prefWidth="152.00006103515625" text="Họ tên" />
                 <TableColumn fx:id="ngaySinhCol" prefWidth="123.199951171875" text="Ngày sinh" />
-                  <TableColumn fx:id="quanHeCol" prefWidth="162.39996337890625" text="Quan hệ với chủ hộ" />
+                  <TableColumn fx:id="quanHeCol" prefWidth="116.0" text="Quan hệ với chủ hộ" />
               </columns>
             </TableView>
          </center>

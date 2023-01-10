@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="dangKiUI" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.DangKiUI">
+<AnchorPane fx:id="dangKiUI" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F9F7F5;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.DangKiUI">
    <children>
-      <Label layoutX="101.0" layoutY="105.0" text="Tên đăng nhập" />
-      <Label layoutX="104.0" layoutY="156.0" text="Mật khẩu" />
-      <TextField fx:id="tenDangNhapDK" layoutX="212.0" layoutY="101.0" prefHeight="26.0" prefWidth="265.0" />
-      <PasswordField fx:id="matKhauDK" layoutX="212.0" layoutY="152.0" prefHeight="26.0" prefWidth="266.0" />
-      <PasswordField layoutX="212.0" layoutY="199.0" prefHeight="26.0" prefWidth="266.0" fx:id="xacNhanMatKhauDK" />
-      <Label layoutX="101.0" layoutY="204.0" text="Xác nhận mật khẩu" />
-      <Label layoutX="101.0" layoutY="250.0" text="Quyền" />
-      <ChoiceBox fx:id="chonQuyen" layoutX="212.0" layoutY="246.0" prefHeight="24.0" prefWidth="264.0" />
-      <Button fx:id="quayLai" layoutX="37.0" layoutY="36.0" mnemonicParsing="false" onAction="#quayLaiLoginUI" prefHeight="26.0" prefWidth="80.0" style="-fx-background-color: #FFB851;" text="Quay lại " textAlignment="JUSTIFY" />
-      <Button layoutX="243.0" layoutY="323.0" mnemonicParsing="false" onAction="#checkDangKi" prefHeight="26.0" prefWidth="203.0" style="-fx-background-color: #749EDC;" text="Đăng kí" />
+      <Label layoutX="80.0" layoutY="105.0" text="Tên đăng nhập">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="80.0" layoutY="160.0" text="Mật khẩu">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="tenDangNhapDK" layoutX="212.0" layoutY="100.0" prefHeight="30.0" prefWidth="265.0" />
+      <PasswordField fx:id="matKhauDK" layoutX="211.0" layoutY="155.0" prefHeight="30.0" prefWidth="266.0" />
+      <PasswordField layoutX="212.0" layoutY="210.0" prefHeight="30.0" prefWidth="266.0" fx:id="xacNhanMatKhauDK" />
+      <Label layoutX="80.0" layoutY="215.0" text="Xác nhận mật khẩu">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Button fx:id="quayLai" layoutX="37.0" layoutY="36.0" mnemonicParsing="false" onAction="#quayLaiLoginUI" prefHeight="26.0" prefWidth="80.0" style="-fx-background-color: #00CAFF;" text="Quay lại " textAlignment="JUSTIFY">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="198.0" layoutY="282.0" mnemonicParsing="false" onAction="#checkDangKi" prefHeight="26.0" prefWidth="203.0" style="-fx-background-color: #00CAFF;" text="Đăng kí">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
    </children>
 </AnchorPane>

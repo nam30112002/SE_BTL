@@ -7,12 +7,20 @@ public class ThanhVienGiaDinh {
     private String hoTen;
     private String ngaySinh;
 
+    public static int idNhanKhauTarget;
+
     public ThanhVienGiaDinh(String hoTen, String ngaySinh, String quanHeVoiChuHo) {
         this.quanHeVoiChuHo = quanHeVoiChuHo;
         this.hoTen = hoTen;
         this.ngaySinh = ngaySinh;
     }
 
+    public ThanhVienGiaDinh(int idNhanKhau, String hoTen, String ngaySinh, String quanHeVoiChuHo) {
+        this.idNhanKhau = idNhanKhau;
+        this.quanHeVoiChuHo = quanHeVoiChuHo;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+    }
 
     public static String maHoKhauTarget;
 

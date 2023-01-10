@@ -55,7 +55,7 @@ public class DoiMatKhauUI {
         String matKhauCu = matKhauCuField.getText();
         String matKhauMoi = matKhauMoiField.getText();
         String xacNhanMatKhauMoi = xacNhanMatKhauMoiField.getText();
-        String SQL = "select matkhau from taikhoan where taikhoan = '" + UserController.getUser() + "';";
+        String SQL = "select passwd from users where userName = '" + UserController.getUser() + "';";
         ResultSet resultSet = SQLConnection.statement.executeQuery(SQL);
         String matKhauDeCheck = null;
         while (resultSet.next()) {
@@ -98,7 +98,7 @@ public class DoiMatKhauUI {
             return;
         }
 
-        String SQL1 = "UPDATE taikhoan SET matkhau = '" + matKhauMoi + "' WHERE taikhoan = '" + UserController.getUser() + "';";
+        String SQL1 = "UPDATE users SET passwd = '" + matKhauMoi + "' WHERE userName = '" + UserController.getUser() + "';";
         System.out.println(SQL1);
         SQLConnection.statement.executeUpdate(SQL1);
 
