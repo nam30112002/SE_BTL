@@ -6,8 +6,9 @@ public class ThanhVienGiaDinh {
     private String quanHeVoiChuHo;
     private String hoTen;
     private String ngaySinh;
-
+    public static String hoTenTarget;
     public static int idNhanKhauTarget;
+
 
     public ThanhVienGiaDinh(String hoTen, String ngaySinh, String quanHeVoiChuHo) {
         this.quanHeVoiChuHo = quanHeVoiChuHo;

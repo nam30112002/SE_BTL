@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.DangKiTamVangUI">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -25,8 +24,8 @@
             <TextArea fx:id="liDoTA" layoutX="201.0" layoutY="236.0" prefHeight="101.0" prefWidth="250.0" />
             <DatePicker fx:id="tuNgayCB" layoutX="201.0" layoutY="146.0" prefWidth="250.0" />
             <DatePicker fx:id="denNgayCB" layoutX="201.0" layoutY="176.0" prefWidth="250.0" />
-            <Button layoutX="495.0" layoutY="349.0" mnemonicParsing="false" onAction="#xacNhan" text="Xác nhận" fx:id="xacNhanB" />
-            <Button fx:id="backB" layoutX="43.0" layoutY="349.0" mnemonicParsing="false" onAction="#back" text="Back" />
+            <Button layoutX="495.0" layoutY="349.0" mnemonicParsing="false" onAction="#xacNhan" style="-fx-background-color: #00CAFF;" text="Xác nhận" fx:id="xacNhanB" />
+            <Button fx:id="backB" layoutX="43.0" layoutY="349.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #00CAFF;" text="Back" />
             <Label layoutX="40.0" layoutY="210.0" text="Nơi tạm trú:" />
             <TextField fx:id="noiTamVangTF" layoutX="201.0" layoutY="206.0" prefWidth="250.0" />
          </children>

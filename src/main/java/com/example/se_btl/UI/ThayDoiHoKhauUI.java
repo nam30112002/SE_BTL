@@ -10,7 +10,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -32,8 +35,6 @@ public class ThayDoiHoKhauUI {
     private Button backB;
     @FXML
     private Label label1;
-    @FXML
-    private TableColumn<ThanhVienGiaDinh, Integer> idCol;
 
 
 
@@ -57,10 +58,8 @@ public class ThayDoiHoKhauUI {
             String hoTen = resultSet.getString("hoTen");
             String ngaySinh = String.valueOf(resultSet.getDate("namSinh"));
             String quanHe = resultSet.getString("quanHeVoiChuHo");
-            Integer id = resultSet.getInt("idNhanKhau");
-            list.add(new ThanhVienGiaDinh(id,hoTen,ngaySinh,quanHe));
+            list.add(new ThanhVienGiaDinh(hoTen,ngaySinh,quanHe));
         }
-        idCol.setCellValueFactory(new PropertyValueFactory<ThanhVienGiaDinh,Integer>("idNhanKhau"));
         hoTenCol.setCellValueFactory(new PropertyValueFactory<ThanhVienGiaDinh,String>("hoTen"));
         ngaySinhCol.setCellValueFactory(new PropertyValueFactory<ThanhVienGiaDinh,String>("ngaySinh"));
         quanHeCol.setCellValueFactory(new PropertyValueFactory<ThanhVienGiaDinh,String>("quanHeVoiChuHo"));
@@ -99,24 +98,7 @@ public class ThayDoiHoKhauUI {
         this.initialize();
     }
 
-    public void xoaThanhVien() throws SQLException {
-        if(bangThanhVien.getSelectionModel().getSelectedItem()==null){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Thất bại");
-            alert.setContentText("Chưa chọn thành viên trong bảng");
-            alert.showAndWait();
-            return;
-        }
+    public void xoaThanhVien(){
 
-        ThanhVienGiaDinh.idNhanKhauTarget = bangThanhVien.getSelectionModel().getSelectedItem().getIdNhanKhau();
-        String sql = "delete from thanh_vien_cua_ho where idNhanKhau = " + ThanhVienGiaDinh.idNhanKhauTarget + ";";
-        SQLConnection.statement.executeUpdate(sql);
-        this.initialize();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thông báo");
-        alert.setHeaderText("Thành công");
-        alert.setContentText("Xóa thành công!");
-        alert.showAndWait();
     }
 }

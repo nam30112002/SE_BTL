@@ -1,0 +1,174 @@
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-background-color:  #77ACC7;
+}
+.table-view .column-header .label{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+}
+.table-view .cell{
+    -fx-cell-size: 35;
+    -fx-alignment: center-left;
+    -fx-text-fill: #574524;
+    -fx-alignment: CENTER_LEFT;
+
+}
+.table-row-cell:selected {
+    -fx-background-color: #F2B400;
+    -fx-text-background-color:  #6622CC;
+
+}
+
+/* scroll bar starts here */
+
+/* The increment and decrement button CSS class of scrollbar */
+.table-view .increment-button ,.table-view .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 2em;
+
+}
+
+/* The main scrollbar **track** CSS class  */
+.table-view .scroll-bar:horizontal .track,
+.table-view .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color:derive( #6622CC,80%);
+
+    -fx-background-radius: 2em;
+    -fx-border-radius:2em;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.table-view .scroll-bar:horizontal .thumb,
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color:derive( #6622CC,90%);
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+
+}
+
+/* chart properties */
+
+.chart {
+    -fx-padding: 10px;
+    -fx-background-color: transparent;
+    -fx-legend-visible: false;
+}
+.chart-plot-background {
+    -fx-background-color:transparent;
+}
+
+.chart-pie {
+    -fx-border-color: derive(-fx-pie-color, 1%);
+    -fx-border-width: 0px;
+}
+
+
+
+
+
+#tabPane {
+    -fx-tab-min-height: 5em;
+    /* 24 */
+    -fx-tab-max-height: 5em;
+    /* 24 */
+
+    -fx-tab-min-width: 0.5em;
+    -fx-tab-max-width: 0.5em;
+    -fx-padding: 0 -1 -1 0
+}
+.tab .tab-label {
+    -fx-background-color: transparent;
+    -fx-alignment: CENTER;
+    -fx-text-fill: #0F0002;
+
+}
+
+.tab{
+
+    -fx-background-color: #FFFFFF;
+    -fx-background-insets: 0.0;
+    -fx-background-radius: 0.0;
+    -fx-padding: 0 30 0 30;
+}
+
+.tab:selected
+{
+    -fx-background-color: #FAFCFB;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-border-width: 5 0 0 0;
+    -fx-border-color: #3FE387;
+
+
+
+}
+
+.tab:focused
+{
+    -fx-focus-color: transparent;
+
+
+}
+
+.tab-pane *.tab-header-background
+{
+    -fx-background-color: transparent;
+}
+
+.tab-pane:left *.tab-header-area
+{
+    -fx-background-insets: 0, 0 0 10;
+    -fx-padding: 0.0em 0.0em 0.0em 0.0em;
+
+
+}
+
+.tab:selected .focus-indicator
+{
+    -fx-focus-color: transparent;
+    -fx-border-color: transparent;
+}
+
+
+
+
+/* Menu */
+.menu-bar {
+    -fx-background-color: #FFDDF4;
+    -fx-border-width: 0;
+}
+
+.menu-bar .menu-button {
+    -fx-background: #c7c7c7;
+    -fx-text-fill: #000000;
+    -fx-font-size: 15 pt;
+}
+
+.menu-item {
+    -fx-background-radius: 0;
+    -fx-padding: 0em 0em 0em 0em;
+    -fx-text-fill: black;
+    -fx-background: #c7c7c7;
+}
+
+.menu-item .label {
+    -fx-font-size: 16 pt;
+    -fx-text-fill: black;
+}
+
+.menu-item:hover {
+    -fx-background-color: #c7c7c7;
+}
+
+.menu-item:pressed {
+}
+
+.context-menu {
+    -fx-skin: "com.sun.javafx.scene.control.skin.ContextMenuSkin";
+    -fx-background-color: #e7e7e7;
+    -fx-border-width: 0.2px;
+    -fx-border-radius: 5;
+    -fx-border-color: black;
+}

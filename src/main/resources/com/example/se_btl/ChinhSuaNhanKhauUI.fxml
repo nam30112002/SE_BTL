@@ -47,9 +47,9 @@
                 <TextField fx:id="ngheNghiepTF" layoutX="415.0" layoutY="256.0" />
                 <TextField fx:id="tiengDanTocTF" layoutX="415.0" layoutY="291.0" />
                 <TextField fx:id="noiLamViecTF" layoutX="415.0" layoutY="326.0" />
-                <Button fx:id="themB" layoutX="249.0" layoutY="359.0" mnemonicParsing="false" onAction="#xacNhanChinhSua" prefHeight="26.0" prefWidth="120.0" text="Xác nhận chỉnh sửa" />
+                <Button fx:id="themB" layoutX="249.0" layoutY="359.0" mnemonicParsing="false" onAction="#xacNhanChinhSua" prefHeight="26.0" prefWidth="120.0" style="-fx-background-color: #00CAFF;" text="Xác nhận chỉnh sửa" />
                 <ChoiceBox fx:id="gioiTinhCB" layoutX="415.0" layoutY="81.0" prefWidth="150.0" />
-                <Button fx:id="backB" layoutX="52.0" layoutY="360.0" mnemonicParsing="false" onAction="#back" text="Back" />
+                <Button fx:id="backB" layoutX="52.0" layoutY="360.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #00CAFF;" text="Back" />
             </children>
         </AnchorPane>
     </center>
