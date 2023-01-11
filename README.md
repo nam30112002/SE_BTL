@@ -1,2 +1,3 @@
 # SE_BTL
-Sang nhánh test new ui để xem project chính thức
+Sang nhánh minh để xem project mới nhất
+
