@@ -333,10 +333,33 @@ public class MainUI  {
     public void chuyenDi(){
 
     }
-    public void chinhSua1(){
+    public void chinhSuaDiaChiHoKhau() throws IOException {
+        if(bangHoKhau.getSelectionModel().getSelectedItem()==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Chỉnh sửa thất bại");
+            alert.setContentText("Chưa chọn hộ khẩu trong bảng");
+            alert.showAndWait();
+            return;
+        }
+        HoKhau.maHoKhauTarget = bangHoKhau.getSelectionModel().getSelectedItem().getMaHoKhau();
 
+        Stage stage1 = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("ChinhSuaDiaChiHoKhauUI.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage1.setTitle("Chỉnh sửa địa chỉ hộ khẩu");
+        stage1.setScene(scene);
+        stage1.show();
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage1.setX(x);
+        stage1.setY(y);
     }
 
+    public void reset() throws SQLException {
+        this.initialize();
+    }
     public void thayDoiHoKhau() throws IOException {
         if(bangHoKhau.getSelectionModel().getSelectedItem()==null){
             Alert alert = new Alert(Alert.AlertType.ERROR);

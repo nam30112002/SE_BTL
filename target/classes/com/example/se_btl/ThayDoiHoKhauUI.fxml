@@ -36,9 +36,10 @@
             <Pane prefHeight="317.0" prefWidth="155.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="themThanhVienB" layoutY="90.0" mnemonicParsing="false" onAction="#themThanhVien" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #00CAFF;" text="Thêm thành viên" />
-                  <Button layoutY="210.0" mnemonicParsing="false" prefWidth="155.0" style="-fx-background-color: #00CAFF;" text="Đổi chủ hộ" />
+                  <Button fx:id="doiChuHoB" layoutY="210.0" mnemonicParsing="false" onAction="#doiChuHo" prefWidth="155.0" style="-fx-background-color: #00CAFF;" text="Đổi chủ hộ" />
                   <Button fx:id="resetB" layoutY="30.0" mnemonicParsing="false" onAction="#reset" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #00CAFF;" text="RESET" />
                   <Button layoutY="150.0" mnemonicParsing="false" onAction="#xoaThanhVien" prefWidth="155.0" style="-fx-background-color: #00CAFF;" text="Xóa thành viên" fx:id="xoaB" />
+                  <Button fx:id="suaB" layoutY="270.0" mnemonicParsing="false" onAction="#suaQuanHeVoiChuHo" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #00CAFF;" text="Sửa quan hệ với chủ hộ" />
                </children>
             </Pane>
          </right>

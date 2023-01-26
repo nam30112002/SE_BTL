@@ -8,6 +8,8 @@ public class ThanhVienGiaDinh {
     private String ngaySinh;
     public static String hoTenTarget;
     public static int idNhanKhauTarget;
+    public static String maHoKhauTarget;
+    public static int idChuHoCuTarget;
 
 
     public ThanhVienGiaDinh(String hoTen, String ngaySinh, String quanHeVoiChuHo) {
@@ -23,7 +25,7 @@ public class ThanhVienGiaDinh {
         this.ngaySinh = ngaySinh;
     }
 
-    public static String maHoKhauTarget;
+
 
 
 

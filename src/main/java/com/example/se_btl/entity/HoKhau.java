@@ -5,6 +5,8 @@ public class HoKhau {
     private String tenChuHo;
     private String diaChi;
 
+    public static String maHoKhauTarget;
+
     public HoKhau(String maHoKhau, String tenChuHo, String diaChi) {
         this.maHoKhau = maHoKhau;
         this.tenChuHo = tenChuHo;
