@@ -327,11 +327,61 @@ public class MainUI  {
         stage.setX(x);
         stage.setY(y);
     }
-    public void tachHoKhau(){
+    //chua hoan thanh
+    public void tachHoKhau() throws IOException {
+        if(bangHoKhau.getSelectionModel().getSelectedItem()==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Thất bại");
+            alert.setContentText("Chưa chọn hộ khẩu trong bảng");
+            alert.showAndWait();
+            return;
+        }
+        HoKhau.maHoKhauTarget = bangHoKhau.getSelectionModel().getSelectedItem().getMaHoKhau();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("TachHoKhauUI.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) menuBar.getScene().getWindow();//tranh loi NUllPointer
+        stage.setTitle("Tách hộ khẩu");
+        stage.setScene(scene);
+        stage.show();
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
 
     }
-    public void chuyenDi(){
+    public void xoaHoKhau() throws SQLException {
+        if(bangHoKhau.getSelectionModel().getSelectedItem()==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Xóa thất bại");
+            alert.setContentText("Chưa chọn hộ khẩu trong bảng");
+            alert.showAndWait();
+            return;
+        }
+        HoKhau.maHoKhauTarget = bangHoKhau.getSelectionModel().getSelectedItem().getMaHoKhau();
+        String maHoKhauXoa = HoKhau.maHoKhauTarget;
+        String sql1 = "select * from ho_khau where maHoKhau = N'" + maHoKhauXoa + "';";
+        ResultSet resultSet = SQLConnection.statement.executeQuery(sql1);
+        int idHoKhauXoa = -1;
+        if(resultSet.next()){
+            idHoKhauXoa = resultSet.getInt("ID");
+        }
+        String sql = "delete from thanh_vien_cua_ho where idHoKhau = " + idHoKhauXoa + ";";
+        System.out.println(sql);
+        SQLConnection.statement.executeUpdate(sql);
+        String sql2 = "delete from ho_khau where maHoKhau = N'" + maHoKhauXoa + "'";
+        System.out.println(sql2);
+        SQLConnection.statement.executeUpdate(sql2);
+        this.initialize();
 
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thành công");
+        alert.setHeaderText("Xóa hộ khẩu thành công");
+        alert.setContentText("Chúc mừng bạn đã xóa hộ khẩu thành công");
+        alert.showAndWait();
     }
     public void chinhSuaDiaChiHoKhau() throws IOException {
         if(bangHoKhau.getSelectionModel().getSelectedItem()==null){

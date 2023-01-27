@@ -132,7 +132,7 @@
                            <children>
                               <Button fx:id="themHoKhauB" layoutY="115.0" mnemonicParsing="false" onAction="#themHoKhau" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #00CAFF;" text="Thêm mới hộ khẩu" />
                               <Button fx:id="tachHoKhauB" layoutY="195.0" mnemonicParsing="false" onAction="#tachHoKhau" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #00CAFF;" text="Tách hộ khẩu" />
-                              <Button fx:id="chuyenDiB" layoutY="275.0" mnemonicParsing="false" onAction="#chuyenDi" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #00CAFF;" text="Chuyển đi" />
+                              <Button layoutY="275.0" mnemonicParsing="false" onAction="#xoaHoKhau" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #00CAFF;" text="Xóa hộ khẩu" fx:id="xoaHoKhauB" />
                               <Button fx:id="chinhSuaB1" layoutY="355.0" mnemonicParsing="false" onAction="#chinhSuaDiaChiHoKhau" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #00CAFF;" text="Chỉnh sửa địa chỉ hộ khẩu" />
                               <Button fx:id="thayDoiHKB" layoutY="435.0" mnemonicParsing="false" onAction="#thayDoiHoKhau" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #00CAFF;" text="Xem và thay đổi &#10;thành viên, chủ hộ hộ khẩu" textAlignment="CENTER" />
                               <Button layoutY="35.0" mnemonicParsing="false" onAction="#reset" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #00CAFF;" text="RESET" />

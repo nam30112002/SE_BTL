@@ -11,6 +11,10 @@ public class ThanhVienGiaDinh {
     public static String maHoKhauTarget;
     public static int idChuHoCuTarget;
 
+    public ThanhVienGiaDinh(int idNhanKhau, String hoTen) {
+        this.idNhanKhau = idNhanKhau;
+        this.hoTen = hoTen;
+    }
 
     public ThanhVienGiaDinh(String hoTen, String ngaySinh, String quanHeVoiChuHo) {
         this.quanHeVoiChuHo = quanHeVoiChuHo;
