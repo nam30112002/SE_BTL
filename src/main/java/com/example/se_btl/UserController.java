@@ -10,9 +10,13 @@ public class UserController {
 
     private static String user;
     public static int count;
+    public static int count1;
     static {
+        count1 = 0;
         count = 0;
     }
+
+
 
     public static void setUser(String user) {
         UserController.user = user;

@@ -327,7 +327,6 @@ public class MainUI  {
         stage.setX(x);
         stage.setY(y);
     }
-    //chua hoan thanh
     public void tachHoKhau() throws IOException {
         if(bangHoKhau.getSelectionModel().getSelectedItem()==null){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -488,10 +487,31 @@ public class MainUI  {
         System.out.println("chuyen doi mat khau");
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("DoiMatKhauUI.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        //Stage stage = (Stage)( (Node) event.getSource() ).getScene().getWindow(); //lay stage chua LoginUI
-        //Stage stage = (Stage)dangXuat.getParentPopup().getOwnerWindow(); //menuitem khong phai la lop con cua Node
         Stage stage = (Stage) menuBar.getScene().getWindow();//tranh loi NUllPointer
         stage.setTitle("Quản lý trao thưởng - Đổi mật khẩu");
+        stage.setScene(scene);
+        stage.show();
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
+    }
+
+    public void khaiTu() throws IOException {
+        if(bangNhanKhau.getSelectionModel().getSelectedItem()==null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Thất bại");
+            alert.setContentText("Chưa chọn nhân khẩu trong bảng");
+            alert.showAndWait();
+            return;
+        }
+        NhanKhau.idTarget = bangNhanKhau.getSelectionModel().getSelectedItem().getId();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("KhaiTuUI.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) menuBar.getScene().getWindow();
+        stage.setTitle("Khai tử");
         stage.setScene(scene);
         stage.show();
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
