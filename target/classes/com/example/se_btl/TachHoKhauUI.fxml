@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@../../../CSS/Config.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.TachHoKhauUI">
+   <center>
+      <HBox prefHeight="418.0" prefWidth="704.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="thanhVienCuTable" prefHeight="259.0" prefWidth="255.0">
+              <columns>
+                <TableColumn fx:id="idCol" prefWidth="50.0" text="ID" />
+                <TableColumn fx:id="hoTenCol" prefWidth="200.0" text="Tên thành viên" />
+              </columns>
+            </TableView>
+            <Pane prefHeight="446.0" prefWidth="198.0">
+               <children>
+                  <Button layoutX="76.0" layoutY="79.0" mnemonicParsing="false" onAction="#chuyenMoi" prefHeight="44.0" prefWidth="44.0" text="-&gt;" />
+                  <Button layoutX="76.0" layoutY="141.0" mnemonicParsing="false" onAction="#chuyenCu" prefHeight="44.0" prefWidth="44.0" text="&lt;-" />
+                  <ImageView fitHeight="56.0" fitWidth="45.0" layoutX="76.0" layoutY="141.0" onMousePressed="#chuyenCu" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/arrow.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="57.0" fitWidth="46.0" layoutX="76.0" layoutY="78.0" onMousePressed="#chuyenMoi" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                     <image>
+                        <Image url="@../../../image/arrow.jpg" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="79.0" layoutY="212.0" mnemonicParsing="false" onAction="#ok" prefHeight="43.0" prefWidth="46.0" style="-fx-background-color: #00CAFF;" text="OK" />
+               </children>
+            </Pane>
+            <TableView fx:id="thanhVienMoiTable" prefHeight="459.0" prefWidth="254.0">
+              <columns>
+                <TableColumn fx:id="idCol1" prefWidth="50.0" text="ID" />
+                <TableColumn fx:id="hoTenCol1" prefWidth="200.0" text="Tên thành viên" />
+              </columns>
+            </TableView>
+         </children>
+      </HBox>
+   </center>
+   <top>
+      <Pane prefHeight="83.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="backB" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #00CAFF;" text="Back" />
+            <Label layoutX="179.0" layoutY="52.0" text="Thành viên hộ cũ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="638.0" layoutY="52.0" text="Thành viên hộ mới">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="chuHoCuLabel" layoutX="85.0" layoutY="18.0" text="Chủ hộ cũ là: ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </top>
+   <bottom>
+      <Pane prefHeight="147.0" prefWidth="900.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="15.0" layoutY="95.0" prefHeight="46.0" prefWidth="849.0" text="Chú ý: Chủ hộ cũ không được chuyển sang hộ mới, muốn chuyển sang hộ mới thì phải đổi chủ hộ ở chủ hộ cũ. Ngoài ra mặc định thành viên đầu tiên trong bảng thành viên của hộ mới là chủ hộ của hộ mới." textAlignment="JUSTIFY" wrapText="true" />
+            <Label layoutX="15.0" layoutY="45.0" text="Địa chỉ hộ mới: " />
+            <TextField fx:id="diaChiMoiTF" layoutX="180.0" layoutY="40.0" prefHeight="25.0" prefWidth="500.0" />
+            <TextField fx:id="maKhuVucMoiTF" layoutX="180.0" layoutY="70.0" prefHeight="25.0" prefWidth="500.0" />
+            <Label layoutX="15.0" layoutY="75.0" text="Mã khu vực của hộ khẩu mới:" />
+            <Label layoutX="15.0" layoutY="15.0" text="Mã hộ khẩu mới:" />
+            <TextField fx:id="maHoKhauMoiTF" layoutX="180.0" layoutY="10.0" prefHeight="25.0" prefWidth="500.0" />
+         </children>
+      </Pane>
+   </bottom>
+   <left>
+      <Pane prefHeight="459.0" prefWidth="113.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefHeight="459.0" prefWidth="82.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>
