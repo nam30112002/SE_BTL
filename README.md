@@ -1,3 +1,2 @@
 # SE_BTL
-Sang nhánh minh để xem project mới nhất
-
+Sang nhánh nam16/1 để xem code và hướng dẫn
