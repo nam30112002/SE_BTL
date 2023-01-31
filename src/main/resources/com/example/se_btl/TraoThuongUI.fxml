@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.TraoThuongUI">
+   <children>
+      <BorderPane layoutX="-1.0" prefHeight="400.0" prefWidth="672.0">
+         <right>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="lammoiBtn" layoutX="69.0" layoutY="42.0" mnemonicParsing="false" onMousePressed="#lamMoiDanhSach" text="Làm mới" />
+               </children>
+            </Pane>
+         </right>
+         <center>
+            <TableView fx:id="danhsachTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn prefWidth="75.0" text="ID" />
+                <TableColumn prefWidth="230.0" text="Thành tích" />
+                  <TableColumn prefWidth="166.0" text="Trạng thái" />
+              </columns>
+            </TableView>
+         </center></BorderPane>
+   </children>
+</AnchorPane>

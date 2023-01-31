@@ -19,7 +19,8 @@ public class SQLConnection {
     }
 
     public static Statement getSqlConnection() throws SQLException, ClassNotFoundException {
-        String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=quanlynhankhau;user=nam;password=nam30112002;encrypt=false";
+//        String dbURL = "jdbc:sqlserver://localhost\\NAM30112002;database=quanlynhankhau;user=nam;password=nam30112002;encrypt=false";
+        String dbURL = "jdbc:sqlserver://localhost;database=quanlynhankhau;user=sa;password=luan2301;encrypt=false";
         Connection conn = DriverManager.getConnection(dbURL);
         return conn.createStatement();
     }

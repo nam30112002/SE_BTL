@@ -3,6 +3,7 @@ package com.example.se_btl.UI;
 
 import com.example.se_btl.App;
 import com.example.se_btl.entity.HoKhau;
+import com.example.se_btl.entity.HocSinh;
 import com.example.se_btl.entity.NhanKhau;
 import com.example.se_btl.entity.ThanhVienGiaDinh;
 import com.example.se_btl.service.SQLConnection;
@@ -23,6 +24,10 @@ import java.sql.*;
 import java.util.Objects;
 
 public class MainUI  {
+    public TableView<HocSinh> hocsinhTable;
+    public TableColumn id_hocsinh;
+    public TableColumn danh_hieu_hs;
+    public TableColumn trangthai_traothuong;
     @FXML
     private Button thayDoiHKB;
     @FXML
@@ -210,6 +215,22 @@ public class MainUI  {
         denThongKeCB.getItems().add("Max");
         denThongKeCB.setValue("Max");
         tuThongKeCB.setValue(0);
+
+        ObservableList<HocSinh> hocsinh_list = FXCollections.observableArrayList();
+        String sql7 = "select * from hoc_sinh";
+        System.out.println(sql7);
+        ResultSet resultSet7 = SQLConnection.statement.executeQuery(sql7);
+        while(resultSet7.next()){
+            System.out.println(1);
+            int ID = resultSet7.getInt(1);
+            String danh_hieu = resultSet7.getString(2);
+            String trang_thai = resultSet7.getString(3);
+            hocsinh_list.add(new HocSinh(ID,danh_hieu,trang_thai));
+        }
+        id_hocsinh.setCellValueFactory(new PropertyValueFactory<HocSinh, Integer>("ID"));
+        danh_hieu_hs.setCellValueFactory(new PropertyValueFactory<HocSinh, String>("danh_hieu"));
+        trangthai_traothuong.setCellValueFactory(new PropertyValueFactory<HocSinh, String>("trang_thai"));
+        hocsinhTable.setItems(hocsinh_list);
     }
 
     public void themMoiNhanKhau() throws IOException {

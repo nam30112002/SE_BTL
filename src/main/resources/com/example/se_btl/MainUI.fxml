@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.input.KeyCodeCombination?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.MainUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.MainUI">
     <top>
         <MenuBar fx:id="menuBar" stylesheets="@../../../CSS/Config.css" BorderPane.alignment="CENTER">
             <menus>
@@ -172,14 +159,25 @@
                   </BorderPane>
                </content>
                 </Tab>
-                <Tab text="Lịch sử">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                    </content>
-                </Tab>
+                <Tab text="Lịch sử" />
                 <Tab text="Phần thưởng">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane layoutX="-1.0" prefHeight="536.0" prefWidth="900.0">
+                           <right>
+                              <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                           </right>
+                           <center>
+                              <TableView fx:id="hocsinhTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn fx:id="id_hocsinh" prefWidth="75.0" text="ID" />
+                                  <TableColumn fx:id="danh_hieu_hs" prefWidth="514.0" text="Danh hiệu" />
+                                    <TableColumn fx:id="trangthai_traothuong" prefWidth="110.0" text="Trạng thái" />
+                                </columns>
+                              </TableView>
+                           </center></BorderPane>
+                     </children></AnchorPane>
                     </content>
                 </Tab>
             </tabs>

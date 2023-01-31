@@ -101,6 +101,11 @@ public class ThemMoiNhanKhauUI {
                 nguyenQuan +"',N'" + danToc + "',N'" + CCCD + "',N'" + noiThuongTru + "',N'" + gioiTinh
                 + "',N'" + diaChi + "',N'" + quocTich + "');";
         System.out.println(sql);
+
+        int sotuoi = 2023 - ngaySinhTF.getValue().getYear();
+        if (sotuoi <= 18 && sotuoi >= 6){
+
+        }
         SQLConnection.statement.executeUpdate(sql);
 
         if(hocVan!=null){
