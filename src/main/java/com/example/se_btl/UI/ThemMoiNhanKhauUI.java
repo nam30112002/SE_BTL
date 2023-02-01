@@ -104,7 +104,9 @@ public class ThemMoiNhanKhauUI {
 
         int sotuoi = 2023 - ngaySinhTF.getValue().getYear();
         if (sotuoi <= 18 && sotuoi >= 6){
-
+            System.out.println("da them 1 hs");
+            String hocsinh_sql = "insert into hoc_sinh(ID) values (N'"+ CCCD + "');";
+            SQLConnection.statement.executeUpdate(hocsinh_sql);
         }
         SQLConnection.statement.executeUpdate(sql);
 
