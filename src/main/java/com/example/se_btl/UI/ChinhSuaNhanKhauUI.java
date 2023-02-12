@@ -218,7 +218,7 @@ public class ChinhSuaNhanKhauUI {
             String sql1 = "UPDATE nhan_khau " + "SET noiLamViec = N'"+ noiLamViec + "' WHERE id = '" + NhanKhau.idTarget + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        String sql2= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigiansua.toString())+ "','" + String.format("Sua nhan khau: %s", hoTen) + "');";
+        String sql2= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigiansua.toString())+ "',N'" + String.format("Sửa nhân khẩu: %s", hoTen) + "');";
         SQLConnection.statement.executeUpdate(sql2);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");

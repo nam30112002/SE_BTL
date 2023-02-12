@@ -145,10 +145,10 @@ public class ThemMoiNhanKhauUI {
             String sql1 = "UPDATE nhan_khau " + "SET noiLamViec = N'"+ noiLamViec + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-       String sql2= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigiannhap.toString())+ "',N'" + String.format("Them nhan khẩu: %s", hoTen) + "');";
+       String sql2= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigiannhap.toString())+ "',N'" + String.format("Thêm nhân khẩu: %s", hoTen) + "');";
         SQLConnection.statement.executeUpdate(sql2);
         System.out.println(sql2);
-        Alert alert=new Alert(Alert.AlertType.ERROR);
+
 
         // Them nhan khau vao tre_em va hoc_sinh
 

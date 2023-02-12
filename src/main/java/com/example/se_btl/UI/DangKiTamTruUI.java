@@ -92,7 +92,7 @@ public class DangKiTamTruUI {
              hoTen = resultSet.getString("hoTen");
         }
         System.out.print(hoTen);
-        String sql2= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigiantamtru.toString())+ "','" + String.format("Nhan khau dang ki tam tru: %s", hoTen) + "');";
+        String sql2= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigiantamtru.toString())+ "',N'" + String.format("Nhân khẩu đăng ký tạm trú: %s", hoTen) + "');";
         SQLConnection.statement.executeUpdate(sql2);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");

@@ -392,7 +392,7 @@ public class MainUI  {
         String sql = "delete from nhan_khau where ID = " + NhanKhau.idTarget + ";";
         SQLConnection.statement.executeUpdate(sql);
         this.initialize();
-        String sql2= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigianxoa.toString())+ "','" + String.format("Xoa nhan khau: %s", hoTenString) + "');";
+        String sql2= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigianxoa.toString())+ "',N'" + String.format("Xoá nhân khẩu: %s", hoTenString) + "');";
         SQLConnection.statement.executeUpdate(sql2);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");

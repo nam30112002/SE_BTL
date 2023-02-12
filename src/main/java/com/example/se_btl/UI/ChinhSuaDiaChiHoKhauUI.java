@@ -49,7 +49,7 @@ public class ChinhSuaDiaChiHoKhauUI {
                 "WHERE maHoKhau = N'" + maHoKhau + "';" ;
         System.out.println(sql);
         SQLConnection.statement.executeUpdate(sql);
-        String sql5= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigian.toString())+ "','" + String.format("Thay doi dia chi ho khau cua chu ho: %s", hoTen) + "');";
+        String sql5= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigian.toString())+ "',N'" + String.format("Thay đổi địa chỉ hộ khẩu của chủ hộ: %s", hoTen) + "');";
         SQLConnection.statement.executeUpdate(sql5);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
