@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Objects;
 
 public class ChinhSuaNhanKhauUI {
@@ -162,6 +163,7 @@ public class ChinhSuaNhanKhauUI {
         String ngheNghiep = ngheNghiepTF.getText();
         String bietTiengDanToc = tiengDanTocTF.getText();
         String noiLamViec = noiLamViecTF.getText();
+        Date thoigiansua=new Date();
         if(Objects.equals(hoTen, "") || ngaySinh.equals("") || Objects.equals(nguyenQuan, "") || Objects.equals(danToc, "") ||
                 Objects.equals(CCCD, "") || Objects.equals(noiThuongTru, "") || Objects.equals(gioiTinh, "") ||
                 Objects.equals(diaChi, "") || Objects.equals(quocTich, "")){
@@ -216,6 +218,8 @@ public class ChinhSuaNhanKhauUI {
             String sql1 = "UPDATE nhan_khau " + "SET noiLamViec = N'"+ noiLamViec + "' WHERE id = '" + NhanKhau.idTarget + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
+        String sql2= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigiansua.toString())+ "','" + String.format("Sua nhan khau: %s", hoTen) + "');";
+        SQLConnection.statement.executeUpdate(sql2);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText("Chỉnh sửa thành công");

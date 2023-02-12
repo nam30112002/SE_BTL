@@ -15,6 +15,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 public class ThemMoiNhanKhauUI {
@@ -85,6 +87,7 @@ public class ThemMoiNhanKhauUI {
         String ngheNghiep = ngheNghiepTF.getText();
         String bietTiengDanToc = tiengDanTocTF.getText();
         String noiLamViec = noiLamViecTF.getText();
+        Date thoigiannhap=new Date();
         if(Objects.equals(hoTen, "") || ngaySinh.equals("") || Objects.equals(nguyenQuan, "") || Objects.equals(danToc, "") ||
                 Objects.equals(CCCD, "") || Objects.equals(noiThuongTru, "") || Objects.equals(gioiTinh, "") ||
                 Objects.equals(diaChi, "") || Objects.equals(quocTich, "")){
@@ -139,7 +142,9 @@ public class ThemMoiNhanKhauUI {
             String sql1 = "UPDATE nhan_khau " + "SET noiLamViec = N'"+ noiLamViec + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+       String sql2= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigiannhap.toString())+ "','" + String.format("Them nhan khau: %s", hoTen) + "');";
+        SQLConnection.statement.executeUpdate(sql2);
+        Alert alert=new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Thông báo");
         alert.setHeaderText("Thêm mới thành công");
         alert.setContentText("Chúc mừng bạn đã thêm nhân khẩu thành công!");
