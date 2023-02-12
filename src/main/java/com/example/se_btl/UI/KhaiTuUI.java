@@ -81,7 +81,7 @@ public class KhaiTuUI {
         String lyDo = lyDoTF.getText();
         String soKhaiTu = soKhaiTuTF.getText();
         String cccd = cccdTF.getText();
-
+        java.util.Date thoigian=new java.util.Date();
         int idNguoiKhai = 0;
         int idNguoiMat = NhanKhau.idTarget;
         //System.out.println(ngayMat);
@@ -109,12 +109,20 @@ public class KhaiTuUI {
         if(resultSet3.next()){
             idNguoiKhai = resultSet3.getInt("ID");
         }
-
+        String sql5="select *from nhan_khau where ID ="+idNguoiMat+";";
+        ResultSet resultSet5 = SQLConnection.statement.executeQuery(sql5);
+        String hoten=null;
+        if(resultSet5.next()){
+            hoten = resultSet5.getString("hoten");
+        }
         String sql = "insert into khai_tu(soGiayKhaiTu, idNguoiKhai, idNguoiChet, ngayKhai, ngayChet, lyDoChet) " +
                 "values (N'" + soKhaiTu + "'," + idNguoiKhai + "," + idNguoiMat + ", CAST( GETDATE() AS Date ), '" + ngayMat
                  + "', N'" + lyDo + "');";
         System.out.println(sql);
         SQLConnection.statement.executeUpdate(sql);
+        String sql9 = "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigian.toString())+ "',N'" + String.format("Khai tử nhân khẩu: %s", hoten) + "');";
+        System.out.println(sql9);
+        SQLConnection.statement.executeUpdate(sql9);
         String sql1 = "delete from nhan_khau where ID = " + NhanKhau.idTarget + ";";
         System.out.println(sql1);
         SQLConnection.statement.executeUpdate(sql1);

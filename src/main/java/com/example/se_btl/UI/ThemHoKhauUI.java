@@ -86,7 +86,7 @@ public class ThemHoKhauUI {
         while (resultSet.next()){
             hoTen = resultSet.getString("hoTen");
         }
-        String sql5= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigianthem.toString())+ "','" + String.format("Thêm hộ khẩu của chủ hộ: %s", hoTen) + "');";
+        String sql5= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigianthem.toString())+ "',N'" + String.format("Thêm hộ khẩu của chủ hộ: %s", hoTen) + "');";
         SQLConnection.statement.executeUpdate(sql5);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thành công");
