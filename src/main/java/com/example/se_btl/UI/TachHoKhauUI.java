@@ -159,11 +159,11 @@ public class TachHoKhauUI {
         }
         ThanhVienGiaDinh chuHo = list1.get(0);
         //System.out.println(chuHo.getHoTen());
-
         String sql = "insert into ho_khau(maHoKhau, maKhuVuc, diaChi, idChuHo, ngayLap) values (N'" + maHoKhauMoi
                 + "',N'" + maKhuVucMoi + "',N'" + diaChiMoi + "'," + chuHo.getIdNhanKhau() + ", convert(date,getdate()))";
         //System.out.println(sql);
         SQLConnection.statement.executeUpdate(sql);
+
 
         String sql3 = "delete from thanh_vien_cua_ho where idNhanKhau = " + chuHo.getIdNhanKhau()
                 + " and idHoKhau = " + idHoKhauCu + ";";
@@ -185,15 +185,12 @@ public class TachHoKhauUI {
         if(resultSet4.next()){
             idHoKhauMoi = resultSet4.getInt("ID");
         }
-
         for(int i = 1; i < list1.size(); i++){
             ThanhVienGiaDinh thanhVienGiaDinh = list1.get(i);
             String sql1 = "insert into thanh_vien_cua_ho(idNhanKhau, idHoKhau, quanHeVoiChuHo) values ("
                     + thanhVienGiaDinh.getIdNhanKhau() + "," + idHoKhauMoi + ",N'Chưa xác định');";
             System.out.println(sql1);
             SQLConnection.statement.executeUpdate(sql1);
-
-
             String sql2 = "delete from thanh_vien_cua_ho where idNhanKhau = " + thanhVienGiaDinh.getIdNhanKhau()
                     + " and idHoKhau = " + idHoKhauCu + ";";
             SQLConnection.statement.executeUpdate(sql2);
