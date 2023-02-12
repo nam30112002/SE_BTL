@@ -53,7 +53,7 @@ public class ThemHoKhauUI {
         String diaChi = diaChiTF.getText();
         String cCCD = cCCDTF.getText();
         int idChuHo;
-
+        java.util.Date thoigianthem=new java.util.Date();
         String sql1 = "select count(ID) from nhan_khau where CCCD = N'" + cCCD + "';";
         ResultSet resultSet1 = SQLConnection.statement.executeQuery(sql1);
         if (resultSet1.next()){
@@ -80,7 +80,14 @@ public class ThemHoKhauUI {
                 + "',N'" + maKhuVuc + "',N'" + diaChi + "'," + idChuHo + ", convert(date,getdate()))";
         System.out.println(sql);
         SQLConnection.statement.executeUpdate(sql);
-
+        String sql4 = "SELECT * FROM nhan_khau WHERE ID = " + idChuHo + ";";
+        ResultSet resultSet = SQLConnection.statement.executeQuery(sql4);
+        String hoTen=null;
+        while (resultSet.next()){
+            hoTen = resultSet.getString("hoTen");
+        }
+        String sql5= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigianthem.toString())+ "','" + String.format("Them ho khau cua chu ho: %s", hoTen) + "');";
+        SQLConnection.statement.executeUpdate(sql5);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thành công");
         alert.setHeaderText("Thêm hộ khẩu thành công");
