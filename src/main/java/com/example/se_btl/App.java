@@ -7,14 +7,15 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import java.io.*;
 import java.sql.*;
-
-import java.io.IOException;
 
 
 public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
+        System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out),true,"UTF-8"));
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LoginUI.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         //scene.getStylesheets().add("Config.css");
@@ -31,5 +32,6 @@ public class App extends Application {
 
     public static void main(String[] args) throws SQLException {
         launch();
+
     }
 }

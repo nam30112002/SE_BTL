@@ -3,6 +3,7 @@ package com.example.se_btl.UI;
 
 import com.example.se_btl.App;
 import com.example.se_btl.entity.HoKhau;
+import com.example.se_btl.entity.LichSu;
 import com.example.se_btl.entity.NhanKhau;
 import com.example.se_btl.entity.ThanhVienGiaDinh;
 import com.example.se_btl.entity.TreEm;
@@ -24,11 +25,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 public class MainUI  {
+    public TableView table_lichsu;
+    public TableColumn thoigian_ls_cl;
+    public TableColumn noidung_ls_cl;
     public TableColumn cccd_tre_em;
     public TableColumn hoten_tre_em;
     public TableColumn ngaysinh_tre_em;
@@ -143,7 +148,6 @@ public class MainUI  {
         if(resultSet.next()){
             tongNhanKhau = resultSet.getInt(1);
         }
-
         String sql1 = "select count(id) from tam_vang;";
         ResultSet resultSet1 = SQLConnection.statement.executeQuery(sql1);
         int vang = 0;
@@ -271,6 +275,19 @@ public class MainUI  {
             ptThanhTichTF.getItems().add(pt);
             ptTreEmTF.getItems().add(pt);
         }
+
+
+        String sql20="select * from lich_su";
+        ResultSet resultSet20=SQLConnection.statement.executeQuery(sql20);
+        ObservableList<LichSu> list_lichsu = FXCollections.observableArrayList();
+        while(resultSet20.next()){
+            String thoigian=resultSet20.getString("thoigian");
+            String noidung=resultSet20.getString("noidung");
+            list_lichsu.add(new LichSu(noidung,thoigian));
+        }
+        thoigian_ls_cl.setCellValueFactory(new PropertyValueFactory<LichSu,String>("thoigian"));
+        noidung_ls_cl.setCellValueFactory(new PropertyValueFactory<LichSu,String >("noidung"));
+        table_lichsu.setItems(list_lichsu);
     }
 
     public void themMoiNhanKhau() throws IOException {
@@ -364,10 +381,19 @@ public class MainUI  {
             alert.showAndWait();
             return;
         }
+        Date thoigianxoa=new Date();
         NhanKhau.idTarget = bangNhanKhau.getSelectionModel().getSelectedItem().getId();
+        String sql3= "select hoTen from nhan_khau where ID=" + NhanKhau.idTarget + ";";
+        ResultSet hoTen = SQLConnection.statement.executeQuery(sql3);
+        String hoTenString=null;
+        if (hoTen.next()) {
+            hoTenString = hoTen.getString("hoTen");
+        }
         String sql = "delete from nhan_khau where ID = " + NhanKhau.idTarget + ";";
         SQLConnection.statement.executeUpdate(sql);
         this.initialize();
+        String sql2= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigianxoa.toString())+ "','" + String.format("Xoa nhan khau: %s", hoTenString) + "');";
+        SQLConnection.statement.executeUpdate(sql2);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText("Thành công");
@@ -421,10 +447,12 @@ public class MainUI  {
             alert.showAndWait();
             return;
         }
+        java.util.Date thoigianxoa= new java.util.Date();
         HoKhau.maHoKhauTarget = bangHoKhau.getSelectionModel().getSelectedItem().getMaHoKhau();
         String maHoKhauXoa = HoKhau.maHoKhauTarget;
         String sql1 = "select * from ho_khau where maHoKhau = N'" + maHoKhauXoa + "';";
         ResultSet resultSet = SQLConnection.statement.executeQuery(sql1);
+
         int idHoKhauXoa = -1;
         if(resultSet.next()){
             idHoKhauXoa = resultSet.getInt("ID");

@@ -17,6 +17,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.MonthDay;
 import java.time.Year;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 public class ThemMoiNhanKhauUI {
@@ -69,6 +71,7 @@ public class ThemMoiNhanKhauUI {
     }
 
     public void themNhanKhau() throws SQLException {
+
         String hoTen = hoTenTF.getText();
         String ngaySinh = ngaySinhTF.getValue().toString();
         String nguyenQuan = nguyenQuanTf.getText();
@@ -87,6 +90,8 @@ public class ThemMoiNhanKhauUI {
         String ngheNghiep = ngheNghiepTF.getText();
         String bietTiengDanToc = tiengDanTocTF.getText();
         String noiLamViec = noiLamViecTF.getText();
+        Date thoigiannhap=new Date();
+        System.out.print(hoTen);
         if(Objects.equals(hoTen, "") || ngaySinh.equals("") || Objects.equals(nguyenQuan, "") || Objects.equals(danToc, "") ||
                 Objects.equals(CCCD, "") || Objects.equals(noiThuongTru, "") || Objects.equals(gioiTinh, "") ||
                 Objects.equals(diaChi, "") || Objects.equals(quocTich, "")){
@@ -97,7 +102,6 @@ public class ThemMoiNhanKhauUI {
             alert.showAndWait();
             return;
         }
-
         String sql = "insert into nhan_khau(hoTen, namSinh, nguyenQuan, danToc, CCCD, noiThuongTru, gioiTinh, diaChiHienNay, quocTich) "
                 + "values (N'" + hoTen + "','" + ngaySinh + "',N'" +
                 nguyenQuan +"',N'" + danToc + "',N'" + CCCD + "',N'" + noiThuongTru + "',N'" + gioiTinh
@@ -141,6 +145,10 @@ public class ThemMoiNhanKhauUI {
             String sql1 = "UPDATE nhan_khau " + "SET noiLamViec = N'"+ noiLamViec + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
+       String sql2= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigiannhap.toString())+ "',N'" + String.format("Them nhan khẩu: %s", hoTen) + "');";
+        SQLConnection.statement.executeUpdate(sql2);
+        System.out.println(sql2);
+        Alert alert=new Alert(Alert.AlertType.ERROR);
 
         // Them nhan khau vao tre_em va hoc_sinh
 

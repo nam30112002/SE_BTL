@@ -12,8 +12,11 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class DangKiTamTruUI {
     @FXML
@@ -35,12 +38,14 @@ public class DangKiTamTruUI {
     @FXML
     private Button backB;
 
-    public void initialize() throws SQLException {
+    public void initialize() throws SQLException, UnsupportedEncodingException {
         int idOrigin = NhanKhau.idTarget;
         String sql = "SELECT * FROM nhan_khau WHERE ID = " + idOrigin + ";";
         ResultSet resultSet = SQLConnection.statement.executeQuery(sql);
         while (resultSet.next()){
-            String hoTen = resultSet.getString("hoTen");
+            String hoTen = resultSet.getNString("hoTen");
+            byte[] utf8bytes = hoTen.getBytes("UTF-8");
+            System.out.println(new String(utf8bytes, "UTF-8"));
             hoTenTF.setText(hoTen);
             String CCCD = resultSet.getString("CCCD");
             CCCDTF.setText(CCCD);
@@ -65,6 +70,8 @@ public class DangKiTamTruUI {
         String denNgay = denNgayCB.getValue().toString();
         String liDo = liDoTA.getText();
         String SDT = SDTTF.getText();
+        Date thoigiantamtru=new Date();
+        int idOrigin1 = NhanKhau.idTarget;
         if(maTamTru.length()==0||tuNgay.length()==0||denNgay.length()==0||liDo.length()==0||SDT.length()==0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -78,6 +85,15 @@ public class DangKiTamTruUI {
                 + liDo + "')" ;
         System.out.println(sql);
         SQLConnection.statement.executeUpdate(sql);
+        String sql5 = "SELECT * FROM nhan_khau WHERE ID = " + idOrigin1 + ";";
+        ResultSet resultSet = SQLConnection.statement.executeQuery(sql5);
+        String hoTen=null;
+        while (resultSet.next()){
+             hoTen = resultSet.getString("hoTen");
+        }
+        System.out.print(hoTen);
+        String sql2= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigiantamtru.toString())+ "','" + String.format("Nhan khau dang ki tam tru: %s", hoTen) + "');";
+        SQLConnection.statement.executeUpdate(sql2);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText("Thành công");

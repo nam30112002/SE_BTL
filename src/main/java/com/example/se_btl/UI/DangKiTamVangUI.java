@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class DangKiTamVangUI {
 
@@ -69,6 +70,8 @@ public class DangKiTamVangUI {
         String denNgay = denNgayCB.getValue().toString();
         String liDo = liDoTA.getText();
         String noiTamVang = noiTamVangTF.getText();
+        Date thoigiantamvang=new Date();
+        int idOrigin1 = NhanKhau.idTarget;
         if(maTamVang.length()==0||tuNgay.length()==0||denNgay.length()==0||liDo.length()==0||noiTamVang.length()==0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -82,6 +85,15 @@ public class DangKiTamVangUI {
                 + liDo + "')" ;
         System.out.println(sql);
         SQLConnection.statement.executeUpdate(sql);
+        String sql5 = "SELECT * FROM nhan_khau WHERE ID = " + idOrigin1 + ";";
+        ResultSet resultSet = SQLConnection.statement.executeQuery(sql5);
+        String hoTen=null;
+        while (resultSet.next()){
+            hoTen = resultSet.getString("hoTen");
+        }
+        System.out.print(hoTen);
+        String sql2= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigiantamvang.toString())+ "','" + String.format("Nhan khau dang ki tam vang: %s", hoTen) + "');";
+        SQLConnection.statement.executeUpdate(sql2);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText("Thành công");
