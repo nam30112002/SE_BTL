@@ -163,7 +163,7 @@ public class ChinhSuaNhanKhauUI {
         String ngheNghiep = ngheNghiepTF.getText();
         String bietTiengDanToc = tiengDanTocTF.getText();
         String noiLamViec = noiLamViecTF.getText();
-        Date thoigiansua=new Date();
+        java.util.Date thoigiansua=new java.util.Date();
         if(Objects.equals(hoTen, "") || ngaySinh.equals("") || Objects.equals(nguyenQuan, "") || Objects.equals(danToc, "") ||
                 Objects.equals(CCCD, "") || Objects.equals(noiThuongTru, "") || Objects.equals(gioiTinh, "") ||
                 Objects.equals(diaChi, "") || Objects.equals(quocTich, "")){
@@ -218,8 +218,9 @@ public class ChinhSuaNhanKhauUI {
             String sql1 = "UPDATE nhan_khau " + "SET noiLamViec = N'"+ noiLamViec + "' WHERE id = '" + NhanKhau.idTarget + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
-        String sql2= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigiansua.toString())+ "',N'" + String.format("Sửa nhân khẩu: %s", hoTen) + "');";
+        String sql2= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigiansua.toString())+ "',N'" + String.format("Chỉnh sửa nhân khẩu: %s", hoTen) + "');";
         SQLConnection.statement.executeUpdate(sql2);
+        System.out.println(sql2);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText("Chỉnh sửa thành công");

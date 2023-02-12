@@ -163,8 +163,16 @@ public class TachHoKhauUI {
                 + "',N'" + maKhuVucMoi + "',N'" + diaChiMoi + "'," + chuHo.getIdNhanKhau() + ", convert(date,getdate()))";
         //System.out.println(sql);
         SQLConnection.statement.executeUpdate(sql);
+        java.util.Date thoigianxoa= new java.util.Date();
+        String sql15="select * from nhan_khau where ID = "+chuHo.getIdNhanKhau()+";";
+        ResultSet hoTen = SQLConnection.statement.executeQuery(sql15);
 
-
+        String hoTenString=null;
+        if (hoTen.next()) {
+            hoTenString = hoTen.getString("hoTen");
+        }
+        String sql6= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigianxoa.toString())+ "',N'" + String.format("Tách nhân khẩu: %s", hoTenString) + "');";
+        SQLConnection.statement.executeUpdate(sql6);
         String sql3 = "delete from thanh_vien_cua_ho where idNhanKhau = " + chuHo.getIdNhanKhau()
                 + " and idHoKhau = " + idHoKhauCu + ";";
         SQLConnection.statement.executeUpdate(sql3);

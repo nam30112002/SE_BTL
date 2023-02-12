@@ -454,9 +454,19 @@ public class MainUI  {
         ResultSet resultSet = SQLConnection.statement.executeQuery(sql1);
 
         int idHoKhauXoa = -1;
+        int idChuHo=0;
         if(resultSet.next()){
             idHoKhauXoa = resultSet.getInt("ID");
+            idChuHo=resultSet.getInt("idChuHo");
         }
+        String sql3= "select hoTen from nhan_khau where ID=" + idChuHo + ";";
+        ResultSet hoTen = SQLConnection.statement.executeQuery(sql3);
+        String hoTenString=null;
+        if (hoTen.next()) {
+            hoTenString = hoTen.getString("hoTen");
+        }
+        String sql5= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigianxoa.toString())+ "',N'" + String.format("Xoá hộ khẩu của chủ hộ: %s", hoTenString) + "');";
+        SQLConnection.statement.executeUpdate(sql5);
         String sql = "delete from thanh_vien_cua_ho where idHoKhau = " + idHoKhauXoa + ";";
         System.out.println(sql);
         SQLConnection.statement.executeUpdate(sql);
