@@ -5,6 +5,7 @@ import com.example.se_btl.App;
 import com.example.se_btl.entity.HoKhau;
 import com.example.se_btl.entity.NhanKhau;
 import com.example.se_btl.entity.ThanhVienGiaDinh;
+import com.example.se_btl.entity.TreEm;
 import com.example.se_btl.service.SQLConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,14 +16,29 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class MainUI  {
+    public TableColumn cccd_tre_em;
+    public TableColumn hoten_tre_em;
+    public TableColumn ngaysinh_tre_em;
+    public TableView bang_tre_em;
+    public Button trao_thuong_btn;
+    public TextField thanhtichTF;
+    public ChoiceBox ptThanhTichTF;
+    public TextField slThanhTichTF;
+    public ChoiceBox ptTreEmTF;
+    public TextField slPhanThuongTE;
     @FXML
     private Button thayDoiHKB;
     @FXML
@@ -73,6 +89,9 @@ public class MainUI  {
     private TableColumn<NhanKhau, Integer> idCol;
     @FXML
     private TableColumn<NhanKhau,String> hoTenCol;
+    private Map phanthuong = new HashMap<String, String>();
+    private Map giaphanthuong = new HashMap<String, Integer>();
+    private Map pt_mpt = new HashMap<String, String>();
     @FXML
     private TableColumn<NhanKhau,String> ngaySinhCol;
     @FXML
@@ -210,6 +229,48 @@ public class MainUI  {
         denThongKeCB.getItems().add("Max");
         denThongKeCB.setValue("Max");
         tuThongKeCB.setValue(0);
+
+
+        String sql7_2= "select * from phan_thuong";
+        ResultSet resultSet7_2 = SQLConnection.statement.executeQuery(sql7_2);
+        while (resultSet7_2.next()){
+            String mpt = resultSet7_2.getString("maphanthuong");
+            String tenpt = resultSet7_2.getString("tenphanthuong");
+            int dongia = resultSet7_2.getInt("dongia");
+            phanthuong.put(mpt, tenpt);
+            giaphanthuong.put(mpt, dongia);
+            pt_mpt.put(tenpt,mpt);
+        }
+        String sql7 = "select distinct * from nhan_khau nk, tre_em te where te.cccd = nk.cccd";
+        ResultSet resultSet7 =  SQLConnection.statement.executeQuery(sql7);
+        ObservableList<TreEm> list_tre_em = FXCollections.observableArrayList();
+        while (resultSet7.next()){
+            int id = resultSet7.getInt("id");
+            String cccd = resultSet7.getString("cccd");
+            System.out.println(cccd);
+            String hoTen = resultSet7.getString("hoTen");
+            String namSinh = resultSet7.getDate("namSinh").toString();
+            String mpt_tre_em = resultSet7.getString("mpt_tre_em");
+            String mpt_thanh_tich = resultSet7.getString("mpt_thanh_tich");
+            int sl_pt_tre_em = resultSet7.getInt("sl_pt_tre_em");
+            int sl_pt_thanh_tich = resultSet7.getInt("sl_pt_thanh_tich");
+            String thanh_tich = resultSet7.getString("thanh_tich");
+            list_tre_em.add(new TreEm(cccd, hoTen, namSinh, mpt_tre_em, mpt_thanh_tich, sl_pt_tre_em, sl_pt_thanh_tich, thanh_tich));
+        }
+        cccd_tre_em.setCellValueFactory(new PropertyValueFactory<TreEm, String>("cccd"));
+        hoten_tre_em.setCellValueFactory(new PropertyValueFactory<TreEm, String>("hoten"));
+        ngaysinh_tre_em.setCellValueFactory(new PropertyValueFactory<TreEm, String>("ngaysinh"));
+        bang_tre_em.setItems(list_tre_em);
+        // set cac loai phan thuong
+        String sql8 = "select * from phan_thuong";
+        ResultSet resultSet8 = SQLConnection.statement.executeQuery(sql8);
+        ptTreEmTF.getItems().clear();
+        ptThanhTichTF.getItems().clear();
+        while (resultSet8.next()){
+            String pt = resultSet8.getString("tenphanthuong");
+            ptThanhTichTF.getItems().add(pt);
+            ptTreEmTF.getItems().add(pt);
+        }
     }
 
     public void themMoiNhanKhau() throws IOException {
@@ -478,7 +539,6 @@ public class MainUI  {
         ngaySinhThongKeC.setCellValueFactory(new PropertyValueFactory<NhanKhau,String>("ngaysinh"));
         gioiTinhThongKeC.setCellValueFactory(new PropertyValueFactory<NhanKhau,String>("gioiTinh"));
         diaChiThongKeC.setCellValueFactory(new PropertyValueFactory<NhanKhau,String>("diaChi"));
-
         bangThongKe.setItems(list);
 
     }
@@ -522,4 +582,25 @@ public class MainUI  {
     }
 
 
+    public void traoThuong(ActionEvent actionEvent) throws SQLException {
+        TreEm selectedTreEm = (TreEm) bang_tre_em.getSelectionModel().getSelectedItem();
+        String thanhtich = thanhtichTF.getText();
+        String ptThanhTich = (String) ptThanhTichTF.getValue();
+        String ptTreEm = (String) ptTreEmTF.getValue();
+        int sl_pt_thanh_tich = Integer.parseInt(slThanhTichTF.getText());
+        int sl_pt_tre_em = Integer.parseInt(slPhanThuongTE.getText());
+        String sql = String.format("UPDATE tre_em SET thanh_tich = '%s', mpt_tre_em = '%s', mpt_thanh_tich = '%s', sl_pt_tre_em = %d, sl_pt_thanh_tich=%d where cccd = '%s'", thanhtich, pt_mpt.get(ptThanhTich), pt_mpt.get(ptTreEm), sl_pt_tre_em, sl_pt_thanh_tich, selectedTreEm.getCccd());
+        System.out.println(sql);
+        SQLConnection.statement.executeUpdate(sql);
+    }
+
+    public void setTraoThuong() {
+//        System.out.println("1");
+        TreEm selectedTreEm = (TreEm) bang_tre_em.getSelectionModel().getSelectedItem();
+        thanhtichTF.setText(selectedTreEm.getThanh_tich());
+        ptThanhTichTF.setValue(phanthuong.get(selectedTreEm.getMpt_thanh_tich()));
+        ptTreEmTF.setValue(phanthuong.get(selectedTreEm.getMpt_tre_em()));
+        slPhanThuongTE.setText(String.valueOf(selectedTreEm.getSl_pt_tre_em()));
+        slThanhTichTF.setText(String.valueOf(selectedTreEm.getSl_pt_thanh_tich()));
+    }
 }

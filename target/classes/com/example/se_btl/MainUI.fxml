@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.input.KeyCodeCombination?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.MainUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.MainUI">
     <top>
         <MenuBar fx:id="menuBar" stylesheets="@../../../CSS/Config.css" BorderPane.alignment="CENTER">
             <menus>
@@ -180,7 +167,36 @@
                 </Tab>
                 <Tab text="Phần thưởng">
                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane prefHeight="537.0" prefWidth="900.0">
+                           <right>
+                              <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="trao_thuong_btn" layoutX="58.0" layoutY="434.0" mnemonicParsing="false" onAction="#traoThuong" text="Trao Thưởng" />
+                                    <Button fx:id="thong_ke_trao_thuong_btn" layoutX="59.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Thống kê" />
+                                    <Label layoutX="14.0" layoutY="60.0" text="Thành Tích" />
+                                    <TextField fx:id="thanhtichTF" layoutX="14.0" layoutY="84.0" prefHeight="25.0" prefWidth="175.0" />
+                                    <Label layoutX="14.0" layoutY="121.0" text="Phần thưởng thành tích" />
+                                    <ChoiceBox fx:id="ptThanhTichTF" layoutX="14.0" layoutY="155.0" prefHeight="25.0" prefWidth="176.0" />
+                                    <TextField fx:id="slThanhTichTF" layoutX="14.0" layoutY="224.0" prefHeight="25.0" prefWidth="78.0" />
+                                    <Label layoutX="14.0" layoutY="194.0" text="Số lượng" />
+                                    <Label layoutX="14.0" layoutY="269.0" text="Phần thưởng trẻ em" />
+                                    <ChoiceBox fx:id="ptTreEmTF" layoutX="14.0" layoutY="309.0" prefHeight="25.0" prefWidth="173.0" />
+                                    <Label layoutX="14.0" layoutY="350.0" text="Số lượng" />
+                                    <TextField fx:id="slPhanThuongTE" layoutX="14.0" layoutY="382.0" prefHeight="25.0" prefWidth="77.0" />
+                                 </children></Pane>
+                           </right>
+                           <center>
+                              <TableView fx:id="bang_tre_em" onMouseClicked="#setTraoThuong" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn fx:id="cccd_tre_em" prefWidth="187.0" text="CCCD" />
+                                  <TableColumn fx:id="hoten_tre_em" prefWidth="364.0" text="Họ tên" />
+                                    <TableColumn fx:id="ngaysinh_tre_em" prefWidth="148.0" text="Ngày sinh" />
+                                </columns>
+                              </TableView>
+                           </center></BorderPane>
+                     </children></AnchorPane>
                     </content>
                 </Tab>
             </tabs>

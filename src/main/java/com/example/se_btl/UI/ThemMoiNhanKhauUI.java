@@ -15,6 +15,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.MonthDay;
+import java.time.Year;
 import java.util.Objects;
 
 public class ThemMoiNhanKhauUI {
@@ -139,6 +141,20 @@ public class ThemMoiNhanKhauUI {
             String sql1 = "UPDATE nhan_khau " + "SET noiLamViec = N'"+ noiLamViec + "' WHERE CCCD = '" + CCCD + "';";
             SQLConnection.statement.executeUpdate(sql1);
         }
+
+        // Them nhan khau vao tre_em va hoc_sinh
+
+        int age = Year.now().getValue() - ngaySinhTF.getValue().getYear();
+        if (age <= 18 && age >= 0){
+            String sql_tre_em = String.format("Insert into tre_em(CCCD) values(N'%s');", CCCD);
+            SQLConnection.statement.executeUpdate(sql_tre_em);
+        }
+        if (ngheNghiep == "Học sinh"){
+            String sql_hoc_sinh = String.format("Insert into hoc_sinh(CCCD) values(N'%s');", CCCD);
+        }
+
+
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText("Thêm mới thành công");
