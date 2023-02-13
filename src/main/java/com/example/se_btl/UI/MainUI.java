@@ -224,6 +224,7 @@ public class MainUI  {
         diaChiC.setCellValueFactory(new PropertyValueFactory<HoKhau,String>("diaChi"));
         bangHoKhau.setItems(list1);
 
+        gioiTinhThongKeCB.getItems().clear();
         gioiTinhThongKeCB.getItems().addAll("Tất cả","Nam", "Nữ", "Khác");
         gioiTinhThongKeCB.setValue("Tất cả");
         for(int i=0;i<100;i++) {
@@ -621,15 +622,26 @@ public class MainUI  {
 
 
     public void traoThuong(ActionEvent actionEvent) throws SQLException {
+        java.util.Date thoigiantraothuong=new java.util.Date();
         TreEm selectedTreEm = (TreEm) bang_tre_em.getSelectionModel().getSelectedItem();
         String thanhtich = thanhtichTF.getText();
         String ptThanhTich = (String) ptThanhTichTF.getValue();
         String ptTreEm = (String) ptTreEmTF.getValue();
         int sl_pt_thanh_tich = Integer.parseInt(slThanhTichTF.getText());
         int sl_pt_tre_em = Integer.parseInt(slPhanThuongTE.getText());
-        String sql = String.format("UPDATE tre_em SET thanh_tich = '%s', mpt_tre_em = '%s', mpt_thanh_tich = '%s', sl_pt_tre_em = %d, sl_pt_thanh_tich=%d where cccd = '%s'", thanhtich, pt_mpt.get(ptThanhTich), pt_mpt.get(ptTreEm), sl_pt_tre_em, sl_pt_thanh_tich, selectedTreEm.getCccd());
+        String sql = String.format("UPDATE tre_em SET thanh_tich = N'%s', mpt_tre_em = '%s', mpt_thanh_tich = '%s', sl_pt_tre_em = %d, sl_pt_thanh_tich=%d where cccd = '%s'", thanhtich, pt_mpt.get(ptThanhTich), pt_mpt.get(ptTreEm), sl_pt_tre_em, sl_pt_thanh_tich, selectedTreEm.getCccd());
         System.out.println(sql);
         SQLConnection.statement.executeUpdate(sql);
+        String cccd = selectedTreEm.getCccd();
+        String sql3 = "select * from nhan_khau where CCCD = '" + cccd + "'";
+        ResultSet hoTen = SQLConnection.statement.executeQuery(sql3);
+        String hoTenString=null;
+        if (hoTen.next()) {
+            hoTenString = hoTen.getString("hoTen");
+        }
+        String sql5= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigiantraothuong.toString())+ "',N'" + String.format("Trao thưởng cho cháu: %s", hoTenString) + "');";
+        SQLConnection.statement.executeUpdate(sql5);
+        System.out.println(sql5);
     }
 
     public void setTraoThuong() {

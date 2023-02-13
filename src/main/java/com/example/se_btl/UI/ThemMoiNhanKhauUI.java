@@ -4,9 +4,16 @@ import com.example.se_btl.App;
 import com.example.se_btl.service.SQLConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -207,5 +214,23 @@ public class ThemMoiNhanKhauUI {
     }
 
 
-
+    public void checkNgaySinh(MouseEvent keyEvent) {
+        LocalDate temp_date = this.ngaySinhTF.getValue();
+//        System.out.println(temp_date);
+        if (temp_date == null){
+            return;
+        }
+//        System.out.println(temp_date.toString() + LocalDate.now().toString());
+        LocalDate today = LocalDate.now();
+        if (today.compareTo(temp_date) < 0){
+//            this.ngaySinhTF.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            ngaySinhTF.setValue(null);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Kiểm tra lại ngày sinh, không được quá ngày hiện tại");
+            alert.showAndWait();
+            return;
+        }
+    }
 }

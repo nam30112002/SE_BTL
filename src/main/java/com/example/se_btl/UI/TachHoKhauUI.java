@@ -141,7 +141,7 @@ public class TachHoKhauUI {
         String maHoKhauMoi = maHoKhauMoiTF.getText();
         String diaChiMoi = diaChiMoiTF.getText();
         String maKhuVucMoi = maKhuVucMoiTF.getText();
-        if(maHoKhauMoi == null || diaChiMoi == null || maKhuVucMoi == null){
+        if(maHoKhauMoi.length() == 0 || diaChiMoi.length() == 0 || maKhuVucMoi.length() == 0){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Thất bại");

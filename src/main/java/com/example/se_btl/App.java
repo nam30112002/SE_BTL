@@ -22,6 +22,7 @@ public class App extends Application {
         //scene.getStylesheets().add(getClass().getResource("Config.css").toExternalForm());
         stage.setTitle("Quản lý trao thưởng - Dang nhap");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
         double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
