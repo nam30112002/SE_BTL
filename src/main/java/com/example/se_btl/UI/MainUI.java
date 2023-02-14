@@ -31,6 +31,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class MainUI  {
+    static public ObservableList<TreEm> list_tre_em;
     public TableView table_lichsu;
     public TableColumn thoigian_ls_cl;
     public TableColumn noidung_ls_cl;
@@ -94,9 +95,9 @@ public class MainUI  {
     private TableColumn<NhanKhau, Integer> idCol;
     @FXML
     private TableColumn<NhanKhau,String> hoTenCol;
-    private Map phanthuong = new HashMap<String, String>();
-    private Map giaphanthuong = new HashMap<String, Integer>();
-    private Map pt_mpt = new HashMap<String, String>();
+    static public Map phanthuong = new HashMap<String, String>();
+    static public  Map giaphanthuong = new HashMap<String, Integer>();
+    static public  Map pt_mpt = new HashMap<String, String>();
     @FXML
     private TableColumn<NhanKhau,String> ngaySinhCol;
     @FXML
@@ -248,7 +249,7 @@ public class MainUI  {
         }
         String sql7 = "select distinct * from nhan_khau nk, tre_em te where te.cccd = nk.cccd";
         ResultSet resultSet7 =  SQLConnection.statement.executeQuery(sql7);
-        ObservableList<TreEm> list_tre_em = FXCollections.observableArrayList();
+        list_tre_em = FXCollections.observableArrayList();
         while (resultSet7.next()){
             int id = resultSet7.getInt("id");
             String cccd = resultSet7.getString("cccd");
@@ -259,6 +260,7 @@ public class MainUI  {
             String mpt_thanh_tich = resultSet7.getString("mpt_thanh_tich");
             int sl_pt_tre_em = resultSet7.getInt("sl_pt_tre_em");
             int sl_pt_thanh_tich = resultSet7.getInt("sl_pt_thanh_tich");
+//            int tongTien = sl_pt_thanh_tich * (int) giaphanthuong.get(mpt_thanh_tich) + sl_pt_tre_em * (int)  giaphanthuong.get(mpt_tre_em);
             String thanh_tich = resultSet7.getString("thanh_tich");
             list_tre_em.add(new TreEm(cccd, hoTen, namSinh, mpt_tre_em, mpt_thanh_tich, sl_pt_tre_em, sl_pt_thanh_tich, thanh_tich));
         }
@@ -652,5 +654,20 @@ public class MainUI  {
         ptTreEmTF.setValue(phanthuong.get(selectedTreEm.getMpt_tre_em()));
         slPhanThuongTE.setText(String.valueOf(selectedTreEm.getSl_pt_tre_em()));
         slThanhTichTF.setText(String.valueOf(selectedTreEm.getSl_pt_thanh_tich()));
+    }
+
+    public void thongKe(ActionEvent actionEvent) throws IOException {
+        System.out.println("Thong ke phan thuong");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("ThongKeTraoThuong.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) menuBar.getScene().getWindow();//tranh loi NUllPointer
+        stage.setTitle("Thống kê trao thưởng");
+        stage.setScene(scene);
+        stage.show();
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
     }
 }

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.MainUI">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.MainUI">
     <top>
         <MenuBar fx:id="menuBar" stylesheets="@../../../CSS/Config.css" BorderPane.alignment="CENTER">
             <menus>
@@ -186,7 +186,7 @@
                               <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                  <children>
                                     <Button fx:id="trao_thuong_btn" layoutX="58.0" layoutY="434.0" mnemonicParsing="false" onAction="#traoThuong" text="Trao Thưởng" />
-                                    <Button fx:id="thong_ke_trao_thuong_btn" layoutX="59.0" layoutY="475.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Thống kê" />
+                                    <Button fx:id="thong_ke_trao_thuong_btn" layoutX="59.0" layoutY="475.0" mnemonicParsing="false" onAction="#thongKe" prefHeight="25.0" prefWidth="82.0" text="Thống kê" />
                                     <Label layoutX="14.0" layoutY="60.0" text="Thành Tích" />
                                     <TextField fx:id="thanhtichTF" layoutX="14.0" layoutY="84.0" prefHeight="25.0" prefWidth="175.0" />
                                     <Label layoutX="14.0" layoutY="121.0" text="Phần thưởng thành tích" />

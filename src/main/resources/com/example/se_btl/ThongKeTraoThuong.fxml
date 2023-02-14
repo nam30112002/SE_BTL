@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.ThongKeTraoThuong">
+   <children>
+      <BorderPane layoutX="-2.0" layoutY="-2.0" prefHeight="400.0" prefWidth="600.0">
+         <bottom>
+            <Pane prefHeight="94.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="306.0" layoutY="14.0" text="Tổng số trẻ em" />
+                  <Label layoutX="305.0" layoutY="39.0" text="Tổng số học sinh có thành tích" />
+                  <Label layoutX="306.0" layoutY="63.0" text="Tổng số tiền phải chi (VNĐ)" />
+                  <Button fx:id="back_btn" layoutX="79.0" layoutY="35.0" mnemonicParsing="false" onAction="#returnHome" text="Quay lại" />
+                  <Label fx:id="tongTeLabel" layoutX="498.0" layoutY="14.0" text="0" />
+                  <Label fx:id="tongTtLabel" layoutX="498.0" layoutY="39.0" text="0" />
+                  <Label fx:id="tongTienLabel" layoutX="498.0" layoutY="63.0" text="0" />
+               </children>
+            </Pane>
+         </bottom>
+         <center>
+            <TableView fx:id="table_thongke" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="nameCol" prefWidth="151.0" text="Họ và tên" />
+                <TableColumn fx:id="thanhtichCol" minWidth="0.0" prefWidth="148.0" text="Thành tích" />
+                  <TableColumn fx:id="pt_te_col" prefWidth="156.0" text="Phần thưởng trẻ em" />
+                  <TableColumn fx:id="pt_tt_col" prefWidth="144.0" text="Phần thưởng thành tích" />
+              </columns>
+            </TableView>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
