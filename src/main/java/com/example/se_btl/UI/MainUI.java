@@ -669,5 +669,21 @@ public class MainUI  {
         double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
         stage.setX(x);
         stage.setY(y);
+
+    }
+
+    public void themPT(ActionEvent actionEvent) throws IOException {
+        System.out.println("Them moi phan thuong");
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("ThemPhanThuong.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = (Stage) menuBar.getScene().getWindow();//tranh loi NUllPointer
+        stage.setTitle("Thêm mới phần thưởng");
+        stage.setScene(scene);
+        stage.show();
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        double x = bounds.getMinX() + (bounds.getWidth() - scene.getWidth()) * 0.5;
+        double y = bounds.getMinY() + (bounds.getHeight() - scene.getHeight()) * 0.5;
+        stage.setX(x);
+        stage.setY(y);
     }
 }

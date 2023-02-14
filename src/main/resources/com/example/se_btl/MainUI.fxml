@@ -185,8 +185,8 @@
                            <right>
                               <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button fx:id="trao_thuong_btn" layoutX="58.0" layoutY="434.0" mnemonicParsing="false" onAction="#traoThuong" text="Trao Thưởng" />
-                                    <Button fx:id="thong_ke_trao_thuong_btn" layoutX="59.0" layoutY="475.0" mnemonicParsing="false" onAction="#thongKe" prefHeight="25.0" prefWidth="82.0" text="Thống kê" />
+                                    <Button fx:id="trao_thuong_btn" layoutX="59.0" layoutY="456.0" mnemonicParsing="false" onAction="#traoThuong" text="Trao Thưởng" />
+                                    <Button fx:id="thong_ke_trao_thuong_btn" layoutX="61.0" layoutY="488.0" mnemonicParsing="false" onAction="#thongKe" prefHeight="25.0" prefWidth="82.0" text="Thống kê" />
                                     <Label layoutX="14.0" layoutY="60.0" text="Thành Tích" />
                                     <TextField fx:id="thanhtichTF" layoutX="14.0" layoutY="84.0" prefHeight="25.0" prefWidth="175.0" />
                                     <Label layoutX="14.0" layoutY="121.0" text="Phần thưởng thành tích" />
@@ -197,6 +197,7 @@
                                     <ChoiceBox fx:id="ptTreEmTF" layoutX="14.0" layoutY="309.0" prefHeight="25.0" prefWidth="173.0" />
                                     <Label layoutX="14.0" layoutY="350.0" text="Số lượng" />
                                     <TextField fx:id="slPhanThuongTE" layoutX="14.0" layoutY="382.0" prefHeight="25.0" prefWidth="77.0" />
+                                    <Button fx:id="themPtBtn" layoutX="42.0" layoutY="424.0" mnemonicParsing="false" onAction="#themPT" text="Thêm Phần thưởng" />
                                  </children></Pane>
                            </right>
                            <center>

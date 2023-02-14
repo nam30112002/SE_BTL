@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_btl.UI.ThemPhanThuong">
+   <children>
+      <BorderPane layoutX="-2.0" layoutY="-3.0" prefHeight="407.0" prefWidth="607.0">
+         <top>
+            <TableView fx:id="table_ds" prefHeight="298.0" prefWidth="607.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="mapt_col" prefWidth="133.0" text="Mã Phần Thưởng" />
+                <TableColumn fx:id="tenpt_col" prefWidth="231.0" text="Tên Phần Thưởng" />
+                  <TableColumn fx:id="dongia_col" prefWidth="242.0" text="Đơn Giá" />
+              </columns>
+            </TableView>
+         </top>
+         <center>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="342.0" layoutY="14.0" text="Tên Phần Quà" />
+                  <Label layoutX="342.0" layoutY="46.0" text="Mã Phần Quà" />
+                  <Label layoutX="342.0" layoutY="78.0" text="Đơn Giá" />
+                  <TextField fx:id="tenQuaTF" layoutX="431.0" layoutY="10.0" />
+                  <TextField fx:id="maQuaTF" layoutX="431.0" layoutY="42.0" />
+                  <TextField fx:id="donGiaTF" layoutX="431.0" layoutY="74.0" />
+                  <Button fx:id="backBtn" layoutX="80.0" layoutY="42.0" mnemonicParsing="false" onAction="#backHome" text="Quay lại" />
+                  <Button fx:id="submitBtn" layoutX="258.0" layoutY="19.0" mnemonicParsing="false" onAction="#themPhanThuong" text="Thêm" />
+                  <Button layoutX="262.0" layoutY="55.0" mnemonicParsing="false" onAction="#xoaPhanThuong" text="Xoá" fx:id="xoaBtn" />
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
