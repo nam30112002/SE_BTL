@@ -12,7 +12,7 @@
                   <Label layoutX="306.0" layoutY="14.0" text="Tổng số trẻ em" />
                   <Label layoutX="305.0" layoutY="39.0" text="Tổng số học sinh có thành tích" />
                   <Label layoutX="306.0" layoutY="63.0" text="Tổng số tiền phải chi (VNĐ)" />
-                  <Button fx:id="back_btn" layoutX="79.0" layoutY="35.0" mnemonicParsing="false" onAction="#returnHome" text="Quay lại" />
+                  <Button fx:id="back_btn" layoutX="79.0" layoutY="35.0" mnemonicParsing="false" onAction="#returnHome" style="-fx-background-color: #00CAFF;" text="Quay lại" />
                   <Label fx:id="tongTeLabel" layoutX="498.0" layoutY="14.0" text="0" />
                   <Label fx:id="tongTtLabel" layoutX="498.0" layoutY="39.0" text="0" />
                   <Label fx:id="tongTienLabel" layoutX="498.0" layoutY="63.0" text="0" />
@@ -20,7 +20,7 @@
             </Pane>
          </bottom>
          <center>
-            <TableView fx:id="table_thongke" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="table_thongke" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../../CSS/Config.css" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="nameCol" prefWidth="151.0" text="Họ và tên" />
                 <TableColumn fx:id="thanhtichCol" minWidth="0.0" prefWidth="148.0" text="Thành tích" />

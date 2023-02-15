@@ -69,8 +69,9 @@ public class TreEm {
         thong_ke_pt_tt = String.format("%s (x%d)", MainUI.phanthuong.get(mpt_thanh_tich), sl_pt_thanh_tich);
 //        this.tong_pt_tre_em = sl_pt_tre_em*(int) giaphanthuong.get(mpt_tre_em);
 //        this.tong_pt_thanh_tich = sl_pt_thanh_tich * (int)giaphanthuong.get(mpt_thanh_tich);
-
-        this.tongTien =  sl_pt_thanh_tich * (int) MainUI.giaphanthuong.get(mpt_thanh_tich) + (int) MainUI.giaphanthuong.get(mpt_tre_em) * sl_pt_tre_em;
+        if (mpt_thanh_tich != null && mpt_tre_em != null){
+            this.tongTien =  sl_pt_thanh_tich * (int) MainUI.giaphanthuong.get(mpt_thanh_tich) + (int) MainUI.giaphanthuong.get(mpt_tre_em) * sl_pt_tre_em;
+        }
     }
 
     public float getTongTien() {
