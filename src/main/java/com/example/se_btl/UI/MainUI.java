@@ -631,9 +631,29 @@ public class MainUI  {
         String ptTreEm = (String) ptTreEmTF.getValue();
         int sl_pt_thanh_tich = Integer.parseInt(slThanhTichTF.getText());
         int sl_pt_tre_em = Integer.parseInt(slPhanThuongTE.getText());
-        String sql = String.format("UPDATE tre_em SET thanh_tich = N'%s', mpt_tre_em = '%s', mpt_thanh_tich = '%s', sl_pt_tre_em = %d, sl_pt_thanh_tich=%d where cccd = '%s'", thanhtich, pt_mpt.get(ptThanhTich), pt_mpt.get(ptTreEm), sl_pt_tre_em, sl_pt_thanh_tich, selectedTreEm.getCccd());
-        System.out.println(sql);
-        SQLConnection.statement.executeUpdate(sql);
+        if (ptTreEm == null && ptThanhTich == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Trao thưởng thất bại");
+            alert.setContentText("Chưa chọn phần thưởng nào");
+            System.out.println("1");
+            alert.showAndWait();
+            return;
+        }
+        if (ptTreEm == null){
+            String sql = String.format("UPDATE tre_em SET thanh_tich = N'%s', mpt_thanh_tich = '%s', sl_pt_thanh_tich = '%d' where cccd = '%s'",
+                    thanhtich, pt_mpt.get(ptThanhTich), sl_pt_thanh_tich, selectedTreEm.getCccd());
+            SQLConnection.statement.executeUpdate(sql);
+        }
+        else if (ptThanhTich == null){
+            String sql = String.format("UPDATE tre_em SET mpt_tre_em = '%s', sl_pt_tre_em = '%d' where cccd = '%s'",
+                    pt_mpt.get(ptTreEm), sl_pt_tre_em, selectedTreEm.getCccd());
+            SQLConnection.statement.executeUpdate(sql);
+        }else{
+            String sql = String.format("UPDATE tre_em SET thanh_tich = N'%s', mpt_tre_em = '%s', mpt_thanh_tich = '%s', sl_pt_tre_em = %d, sl_pt_thanh_tich=%d where cccd = '%s'", thanhtich, pt_mpt.get(ptTreEm), pt_mpt.get(ptThanhTich), sl_pt_tre_em, sl_pt_thanh_tich, selectedTreEm.getCccd());
+            System.out.println(sql);
+            SQLConnection.statement.executeUpdate(sql);
+        }
         String cccd = selectedTreEm.getCccd();
         String sql3 = "select * from nhan_khau where CCCD = '" + cccd + "'";
         ResultSet hoTen = SQLConnection.statement.executeQuery(sql3);
@@ -644,6 +664,7 @@ public class MainUI  {
         String sql5= "insert into lich_su(thoigian,noidung)" + "values(N'" + String.format("%s",thoigiantraothuong.toString())+ "',N'" + String.format("Trao thưởng cho cháu: %s", hoTenString) + "');";
         SQLConnection.statement.executeUpdate(sql5);
         System.out.println(sql5);
+        this.initialize();
     }
 
     public void setTraoThuong() {
